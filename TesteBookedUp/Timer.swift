@@ -35,14 +35,16 @@ struct TimerView: View {
                     }
                 } label: {
                     Label("Pause", systemImage: "pause.fill")
+                        .bold()
+                        .foregroundColor(.white)
+                        .font(Font.title)
+                        .padding([.bottom, .top], 10)
+                        .padding([.leading, .trailing], 40)
+                        .background(Color(hex: 0x6155f5))
+                        .cornerRadius(45)
                 }
-                .bold()
-                .foregroundColor(.white)
-                .font(Font.title)
-                .padding([.bottom, .top], 10)
-                .padding([.leading, .trailing], 40)
-                .background(Color(hex: 0x6155f5))
-                .cornerRadius(45)
+                
+                
                 
                 Button{
                     if (isTimerRunning == false) {
@@ -53,14 +55,15 @@ struct TimerView: View {
                     }
                 } label: {
                     Label("Resume", systemImage: "play.fill")
+                        .bold()
+                        .foregroundColor(.white)
+                        .font(Font.title)
+                        .padding([.bottom, .top], 10)
+                        .padding([.leading, .trailing], 40)
+                        .background(Color(hex: 0x6155f5))
+                        .cornerRadius(45)
                 }
-                .bold()
-                .foregroundColor(.white)
-                .font(Font.title)
-                .padding([.bottom, .top], 10)
-                .padding([.leading, .trailing], 40)
-                .background(Color(hex: 0x6155f5))
-                .cornerRadius(45)
+                
             }
         }
     }

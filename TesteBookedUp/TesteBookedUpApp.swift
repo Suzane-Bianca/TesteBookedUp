@@ -11,7 +11,7 @@ import SwiftUI
 struct TesteBookedUpApp: App {
     var body: some Scene {
         WindowGroup {
-            TimerView()
+            ContentView()
         }
     }
 }

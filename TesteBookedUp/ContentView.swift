@@ -8,31 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
+    @AppStorage("selectedTab") private var selectedTab = 0
+    
     var body: some View {
-        VStack {
-//            Timer()
-            Button {
-                
-            } label: {
-                
+        TabView (selection: $selectedTab){
+            Tab("Sala", systemImage: "house", value: 0){
+                HomeView()
+            }
+            
+            Tab("Biblioteca", systemImage: "books.vertical", value: 0){
+                LibraryView()
+            }
+            
+            Tab("Diário", systemImage: "book", value: 0){
+                NotesView()
             }
         }
-        .padding()
     }
 }
-
-//func Timer() -> some View {
-//    Text(Date(), style: .timer)
-//        .bold()
-//        .foregroundColor(.white)
-//        .font(Font.title)
-//        .padding([.bottom, .top], 10)
-//        .padding([.leading, .trailing], 40)
-//       // .background(Color(hex: 0x6155f5))
-//        .cornerRadius(45)
-//}
-
-
 
 #Preview {
     ContentView()
