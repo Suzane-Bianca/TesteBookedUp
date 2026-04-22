@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Lottie
 import Combine
 
 var timer: Timer = Timer()
@@ -38,6 +39,10 @@ struct TimerView: View {
                                 .stroke(style: StrokeStyle(lineWidth: 3))
                         )
                         .foregroundColor(.purplePurple)
+                    
+                    LottieView(name: "Lendo Gato Magico - Meta 1")
+                    
+                        .frame(width: 224.77, height: 360)
                     
                     Text(" Vamos ler?")
                         .bold()
@@ -79,7 +84,9 @@ struct TimerView: View {
                                 )
                             
                         }
+
                     }
+
                     
                     Button {
                         showingAlert = true
@@ -114,8 +121,8 @@ struct TimerView: View {
                     }
                 }
             }
-            
         }
+        .toolbarVisibility(.hidden, for: .tabBar)
     }
     
     func timerCounter(_ timer: Timer) {
