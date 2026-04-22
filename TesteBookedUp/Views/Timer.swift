@@ -26,6 +26,9 @@ struct TimerView: View {
                     .ignoresSafeArea()
                 
                 VStack (alignment: .center) {
+                    
+                    Spacer()
+                    
                     Text(timeText)
                         .font(.largeTitle)
                         .bold()
@@ -40,11 +43,17 @@ struct TimerView: View {
                         )
                         .foregroundColor(.purplePurple)
                     
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    Spacer()
+
                     LottieView(name: "Lendo Gato Magico - Meta 1")
+                        .frame(width: 225.77, height: 250)
                     
-                        .frame(width: 224.77, height: 360)
                     
-                    Text(" Vamos ler?")
+                    Spacer()
+                    Text("Vamos ler?")
                         .bold()
                         .font(Font.title)
                         .foregroundStyle(Color(.darkPurple))
@@ -82,12 +91,14 @@ struct TimerView: View {
                                     RoundedRectangle(cornerRadius: 45)
                                         .stroke(style: StrokeStyle(lineWidth: 3))
                                 )
-                            
                         }
-
+                        
                     }
-
-                    
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    Spacer()
                     Button {
                         showingAlert = true
                     } label: {

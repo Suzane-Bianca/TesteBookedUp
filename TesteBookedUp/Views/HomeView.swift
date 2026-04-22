@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Lottie
 
 struct HomeView: View {
     @State private var isPresented: Bool = false
@@ -14,30 +15,41 @@ struct HomeView: View {
             ZStack{
                 Color(.lightPurple)
                     .ignoresSafeArea()
+                Image("TelaInicial")
                 
-                VStack{
-                    Text("Seu progresso atual")
-                        .font(Font.title3.bold())
-                        .foregroundColor(Color .darkPurple)
-                    
-                    Button{
-                        isPresented = true
-                    } label: {
-                        Label("Iniciar sessão de leitura", systemImage: "book.fill")
-                        .bold()
-                        .foregroundColor(.white)
-                        .padding([.bottom, .top], 14)
-                        .padding([.leading, .trailing], 20)
-                        .background(Color .purplePurple)
-                        .cornerRadius(45)
-                        .navigationDestination(isPresented: $isPresented){
-                            TimerView()
+                Spacer()
+                
+                VStack {
+                    LottieView(name: "AnimacaoTelaInicial")
+                        .frame(width: 270, height: 280)
+                        
+                    VStack{
+                        
+                        Text("Seu progresso atual")
+                            .font(Font.title3.bold())
+                            .foregroundColor(Color .darkPurple)
+                        
+                        
+                        Button{
+                            isPresented = true
+                        } label: {
+                            Label("Iniciar sessão de leitura", systemImage: "book.fill")
+                                .bold()
+                                .foregroundColor(.white)
+                                .padding([.bottom, .top], 14)
+                                .padding([.leading, .trailing], 20)
+                                .background(Color .purplePurple)
+                                .cornerRadius(45)
+                                .navigationDestination(isPresented: $isPresented){
+                                    TimerView()
+                                }
                         }
                     }
+                    
+                    .padding(50)
+                    .background(.white)
+                    .cornerRadius(45)
                 }
-                .padding(50)
-                .background(.white)
-                .cornerRadius(45)
             }
         }
     }
