@@ -8,8 +8,43 @@
 import SwiftUI
 
 struct SheetOneView: View {
+    var colors = ["Red", "Green", "Blue", "Tartan"]
+    @State private var selectedColor = "Red"
+    @State private var livros = []
+    @State private var isPresented: Bool = false
+    
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack{
+            VStack{
+                Picker("Please choose a color", selection: $selectedColor) {
+                    ForEach(colors, id: \.self) {
+                        Text($0)
+                    }
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                Spacer()
+                
+                VStack(alignment: .leading, spacing: 10){
+                    Button{
+                        isPresented = true
+                    }label: {
+                        Label("Adicionar título do livro", systemImage: "plus")
+                    }
+                    .navigationDestination(isPresented: $isPresented){
+//                        SheetTwoView()
+                    }
+                }
+            }
+            
+            .toolbar {
+                NavigationLink {
+                    
+                } label: {
+                    Label ("Concluir", systemImage: "checkmark")
+                }
+            }
+        }
     }
 }
 

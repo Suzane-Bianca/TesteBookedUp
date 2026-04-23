@@ -6,13 +6,37 @@
 //
 
 import SwiftUI
+import SwiftData
 
-struct SheetTwoView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+class BookName: Identifiable {
+    var id = UUID()
+    var nome: String
+    
+    init (nome: String){
+        self.nome = nome
     }
 }
 
-#Preview {
-    SheetTwoView()
+struct SheetTwoView: View {
+    @State private var bookname: [BookName]
+    @State private var name: String = ""
+    
+    var body: some View {
+        VStack {
+            TextField("Nome do livro", text: $name)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+            
+            Button{
+                self.bookname.append(BookName(nome: self.name))
+                self.name = ""
+            } label: {
+//                Label (Text("Adicionar"), systemImage: "plus")
+            }
+        }
+    }
 }
+
+//#Preview {
+//    SheetTwoView()
+//}

@@ -20,6 +20,7 @@ struct TimerView: View {
     @State private var toSheet: Bool = false
 
     var body: some View {
+        
         NavigationStack {
             ZStack{
                 Color(.lightPurple)
