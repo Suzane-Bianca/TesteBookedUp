@@ -10,7 +10,9 @@ import SwiftData
 
 struct SheetOneView: View {
     @Environment(\.modelContext) var modelContext
-    @Query private var booksSheet: [Book]
+    @Query(sort: \Book.id) private var booksSheet: [Book]
+    
+    @State private var description: String = ""
     
     var colors = ["Red", "Green", "Blue", "Tartan"]
     @State private var selectedColor = "Red"
@@ -29,7 +31,10 @@ struct SheetOneView: View {
                 .pickerStyle(SegmentedPickerStyle())
                 Spacer()
                 
-                
+                ForEach(booksSheet) { book in
+                    BooksDetailView(books: book)
+                        .foregroundStyle(.black)
+                }
                 
                 VStack(alignment: .leading, spacing: 10){
                     Button{
@@ -40,7 +45,13 @@ struct SheetOneView: View {
                     .navigationDestination(isPresented: $isPresented){
                         SheetTwoView()
                     }
+                    
+                    
                 }
+                Spacer()
+                
+                TextField("O livro está sendo...", text: $description)
+                Spacer()
             }
             
             .toolbar {

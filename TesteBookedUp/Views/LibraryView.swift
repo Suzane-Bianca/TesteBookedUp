@@ -14,11 +14,7 @@ struct LibraryView: View {
     @Query private var booksSheet: [Book]
     
     var body: some View {
-        List {
-            ForEach(booksSheet) { book in
-                BooksDetailView(books: book)
-            }
-        }
+
     }
 }
 
