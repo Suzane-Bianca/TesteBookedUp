@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct SheetOneView: View {
+    let allBook: Book
+    
     var colors = ["Red", "Green", "Blue", "Tartan"]
     @State private var selectedColor = "Red"
     @State private var livros = []
@@ -26,13 +29,18 @@ struct SheetOneView: View {
                 Spacer()
                 
                 VStack(alignment: .leading, spacing: 10){
+                    
+                    List {
+                        Text(allBook.nome)
+                    }
+                    
                     Button{
                         isPresented = true
                     }label: {
                         Label("Adicionar título do livro", systemImage: "plus")
                     }
                     .navigationDestination(isPresented: $isPresented){
-//                        SheetTwoView()
+                        SheetTwoView()
                     }
                 }
             }
@@ -49,5 +57,5 @@ struct SheetOneView: View {
 }
 
 #Preview {
-    SheetOneView()
+//    SheetOneView(allBook: Book)
 }
