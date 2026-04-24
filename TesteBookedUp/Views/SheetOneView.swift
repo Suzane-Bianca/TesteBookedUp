@@ -9,7 +9,8 @@ import SwiftUI
 import SwiftData
 
 struct SheetOneView: View {
-    let allBook: Book
+    @Environment(\.modelContext) var modelContext
+    @Query private var booksSheet: [Book]
     
     var colors = ["Red", "Green", "Blue", "Tartan"]
     @State private var selectedColor = "Red"
@@ -28,12 +29,9 @@ struct SheetOneView: View {
                 .pickerStyle(SegmentedPickerStyle())
                 Spacer()
                 
+                
+                
                 VStack(alignment: .leading, spacing: 10){
-                    
-                    List {
-                        Text(allBook.nome)
-                    }
-                    
                     Button{
                         isPresented = true
                     }label: {
@@ -57,5 +55,5 @@ struct SheetOneView: View {
 }
 
 #Preview {
-//    SheetOneView(allBook: Book)
+    SheetOneView()
 }

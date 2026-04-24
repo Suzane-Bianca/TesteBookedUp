@@ -10,25 +10,20 @@ import Lottie
 
 struct HomeView: View {
     @State private var isPresented: Bool = false
+    
     var body: some View {
         NavigationStack {
             ZStack{
-                Color(.lightPurple)
-                    .ignoresSafeArea()
                 Image("TelaInicial")
-                
-                Spacer()
                 
                 VStack {
                     LottieView(name: "AnimacaoTelaInicial")
                         .frame(width: 270, height: 280)
-                        
+                
                     VStack{
-                        
                         Text("Seu progresso atual")
                             .font(Font.title3.bold())
                             .foregroundColor(Color .darkPurple)
-                        
                         
                         Button{
                             isPresented = true
@@ -45,7 +40,6 @@ struct HomeView: View {
                                 }
                         }
                     }
-                    
                     .padding(50)
                     .background(.white)
                     .cornerRadius(45)

@@ -13,7 +13,6 @@ struct SheetTwoView: View {
     @Query private var book: [Book]
     
     @State private var name: String = ""
-    
     @Environment(\.dismiss) var dismiss
 
     
@@ -29,14 +28,9 @@ struct SheetTwoView: View {
                 Spacer()
             }
             .toolbar{
-                ToolbarItem(placement: .cancellationAction){
-                    Button("Cancelar", systemImage: "xmark"){
-                        dismiss()
-                    }
-                }
                 ToolbarItem(placement: .confirmationAction){
                     Button("Confirmar", systemImage: "checkmark"){
-                        let NewBook = Book(nome: name)
+                        let NewBook = newBook(nome: name)
                         modelContext.insert(NewBook)
                         dismiss()
                     }
@@ -50,4 +44,9 @@ struct SheetTwoView: View {
 
 #Preview {
     SheetTwoView()
+}
+
+func newBook (nome: String) -> Book {
+    let NewBook = Book(nome: nome)
+    return NewBook
 }

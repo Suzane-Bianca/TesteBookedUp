@@ -100,6 +100,7 @@ struct TimerView: View {
                     Spacer()
                     Spacer()
                     Spacer()
+                    
                     Button {
                         showingAlert = true
                     } label: {

@@ -6,10 +6,19 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct LibraryView: View {
+    @Environment(\.modelContext) var modelContext
+    
+    @Query private var booksSheet: [Book]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List {
+            ForEach(booksSheet) { book in
+                BooksDetailView(books: book)
+            }
+        }
     }
 }
 
