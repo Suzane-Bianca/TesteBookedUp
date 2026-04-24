@@ -24,11 +24,13 @@ struct HomeView: View {
                         .frame(width: 270, height: 280)
                         
                     VStack{
-                        
                         Text("Seu progresso atual")
                             .font(Font.title3.bold())
                             .foregroundColor(Color .darkPurple)
-                        
+                        VStack {
+                            ProgressBar(width: 250, height: 20, percent:100)
+                        }
+                        .padding(.all, 10)
                         
                         Button{
                             isPresented = true
