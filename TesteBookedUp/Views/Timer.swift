@@ -119,6 +119,7 @@ struct TimerView: View {
                                 }
                                 Button ("Concluir"){
                                     toSheet = true
+//                                    progressViewModel.increaseProgress(with: secondsToMinutes(seconds: counter))
                                     if (toSheet) {
                                         isTimerRunning = false
                                         progressViewModel.increaseProgress(with: secondsToMinutes(seconds: counter))

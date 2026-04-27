@@ -13,6 +13,7 @@ class ProgressViewModel {
     var progress: Int = 0
     
     func increaseProgress(with minutes: Int) -> Int {
-        return minutes
+        progress += minutes
+        return progress
     }
 }
