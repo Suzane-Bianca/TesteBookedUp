@@ -12,12 +12,15 @@ import Combine
 var timer: Timer = Timer()
 
 struct TimerView: View {
+    @Environment(ProgressViewModel.self) private var progressViewModel: ProgressViewModel
+    
     @State private var showingAlert: Bool = false
     
     @State var timeText: String = "00 : 00 : 00"
     @State var counter:Int = 0
     @State var isTimerRunning:Bool = false
     @State private var toSheet: Bool = false
+    @State var timerPontuation: Int = 0
 
     var body: some View {
         
@@ -118,6 +121,7 @@ struct TimerView: View {
                                     toSheet = true
                                     if (toSheet) {
                                         isTimerRunning = false
+                                        progressViewModel.increaseProgress(with: 60)
                                         timer.invalidate()
                                     }
                                 }
@@ -157,7 +161,10 @@ struct TimerView: View {
 }
 
 #Preview {
+    @Previewable @State var progressViewModel = ProgressViewModel()
+    
     TimerView()
+        .environment(progressViewModel)
 }
 
 //force unwrap -> !

@@ -9,10 +9,15 @@ import SwiftUI
 import Lottie
 
 struct HomeView: View {
+    
     @State private var isPresented: Bool = false
+    
     var body: some View {
+        
         NavigationStack {
+            
             ZStack{
+                
                 Color(.lightPurple)
                     .ignoresSafeArea()
                 Image("TelaInicial")

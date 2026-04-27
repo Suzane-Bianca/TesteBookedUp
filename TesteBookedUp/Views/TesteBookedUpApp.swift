@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct TesteBookedUpApp: App {
+    @State var progressViewModel = ProgressViewModel()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(progressViewModel)
         }
     }
 }
