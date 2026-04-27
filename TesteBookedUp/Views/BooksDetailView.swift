@@ -13,8 +13,7 @@ struct BooksDetailView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(books.nome)
-                .font(.title2)
-                .fontWeight(.bold)
+                .font(.body)
         }
     }
 }

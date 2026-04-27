@@ -13,6 +13,7 @@ struct SheetTwoView: View {
     @Query private var book: [Book]
     
     @State private var name: String = ""
+    var editingBook: Book?
     @Environment(\.dismiss) var dismiss
 
     
@@ -31,10 +32,21 @@ struct SheetTwoView: View {
                 ToolbarItem(placement: .confirmationAction){
                     Button("Confirmar", systemImage: "checkmark"){
                         let NewBook = newBook(nome: name)
-                        modelContext.insert(NewBook)
-                        dismiss()
+                        if editingBook != nil {
+                            editingBook?.nome = name
+                            dismiss()
+                        }
+                        else {
+                            modelContext.insert(NewBook)
+                            dismiss()
+                        }
                     }
                     .disabled(name.isEmpty)
+                }
+            }
+            .onAppear {
+                if let editingBook = editingBook {
+                    name = editingBook.nome
                 }
             }
         }
@@ -43,7 +55,7 @@ struct SheetTwoView: View {
 }
 
 #Preview {
-    SheetTwoView()
+    SheetTwoView(editingBook: nil)
 }
 
 func newBook (nome: String) -> Book {
