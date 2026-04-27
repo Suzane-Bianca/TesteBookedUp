@@ -121,7 +121,7 @@ struct TimerView: View {
                                     toSheet = true
                                     if (toSheet) {
                                         isTimerRunning = false
-                                        progressViewModel.increaseProgress(with: 60)
+                                        progressViewModel.increaseProgress(with: secondsToMinutes(seconds: counter))
                                         timer.invalidate()
                                     }
                                 }
@@ -157,6 +157,11 @@ struct TimerView: View {
         let minutes = (seconds % 3600) / 60
         let seconds = seconds.remainderReportingOverflow(dividingBy: 60).partialValue
         return (hours, minutes, seconds)
+    }
+    
+    func secondsToMinutes(seconds: Int) -> (Int) {
+        let minutes = (seconds / 60)
+        return minutes
     }
 }
 

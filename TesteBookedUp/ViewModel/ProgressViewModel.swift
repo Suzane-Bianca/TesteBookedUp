@@ -10,9 +10,9 @@ import SwiftUI
 
 @Observable
 class ProgressViewModel {
-    var progress: Double = 1
+    var progress: Int = 0
     
-    func increaseProgress(with minutes: Double) {
-        progress += minutes
+    func increaseProgress(with minutes: Int) -> Int {
+        return minutes
     }
 }

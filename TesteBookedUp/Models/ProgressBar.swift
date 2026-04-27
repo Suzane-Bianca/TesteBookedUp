@@ -44,7 +44,7 @@ struct ProgressBar: View {
                 .foregroundStyle(Color.gray.opacity(0.1))
             
             RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .frame(width: percent * multipler, height: height)
+                .frame(width: CGFloat(progressViewModel.progress) * multipler, height: height)
                 .foregroundStyle(Color("ProgressBar"))
                 
         }
