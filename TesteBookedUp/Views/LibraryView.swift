@@ -9,7 +9,18 @@ import SwiftUI
 
 struct LibraryView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack{
+            Image("Biblioteca")
+                .resizable()
+                .edgesIgnoringSafeArea(.all)
+            
+            VStack {
+                HStack{
+                    Text("oii")
+                        
+                }
+            }
+        }
     }
 }
 
