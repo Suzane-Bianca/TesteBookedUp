@@ -35,7 +35,7 @@ struct HomeView: View {
                     
                     LottieView(name: "AnimacaoTelaInicial")
                         .frame(width: 270, height: 280)
-                        
+                
                     VStack{
                         Text("Seu progresso atual")
                             .font(Font.title3.bold())
@@ -60,7 +60,6 @@ struct HomeView: View {
                                 }
                         }
                     }
-                    
                     .padding(50)
                     .background(.white)
                     .cornerRadius(45)

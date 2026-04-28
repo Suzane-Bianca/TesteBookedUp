@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct TesteBookedUpApp: App {
@@ -16,5 +17,7 @@ struct TesteBookedUpApp: App {
             ContentView()
                 .environment(progressViewModel)
         }
+        
+        .modelContainer(for: [Book.self])
     }
 }
