@@ -12,12 +12,15 @@ import Combine
 var timer: Timer = Timer()
 
 struct TimerView: View {
+    @Environment(ProgressViewModel.self) private var progressViewModel: ProgressViewModel
+    
     @State private var showingAlert: Bool = false
     
     @State var timeText: String = "00 : 00 : 00"
     @State var counter:Int = 0
     @State var isTimerRunning:Bool = false
     @State private var toSheet: Bool = false
+    @State var timerPontuation: Int = 0
 
     var body: some View {
         
@@ -117,8 +120,10 @@ struct TimerView: View {
                                 }
                                 Button ("Concluir"){
                                     toSheet = true
+//                                    progressViewModel.increaseProgress(with: secondsToMinutes(seconds: counter))
                                     if (toSheet) {
                                         isTimerRunning = false
+                                        progressViewModel.increaseProgress(with: secondsToMinutes(seconds: counter))
                                         timer.invalidate()
                                     }
                                 }
@@ -127,9 +132,9 @@ struct TimerView: View {
                                 Text("Salvar essa sessão de leitura registrará seu progresso.")
                             }
                             .sheet(isPresented: $toSheet){
-                                SheetOneView()
-                                    .background(Color(.systemBackground))
-                                    .presentationDragIndicator(.visible)
+//                                SheetOneView()
+//                                    .background(Color(.systemBackground))
+//                                    .presentationDragIndicator(.visible)
                             }
                     }
                 }
@@ -155,10 +160,18 @@ struct TimerView: View {
         let seconds = seconds.remainderReportingOverflow(dividingBy: 60).partialValue
         return (hours, minutes, seconds)
     }
+    
+    func secondsToMinutes(seconds: Int) -> (Int) {
+        let minutes = (seconds / 60)
+        return minutes
+    }
 }
 
 #Preview {
+    @Previewable @State var progressViewModel = ProgressViewModel()
+    
     TimerView()
+        .environment(progressViewModel)
 }
 
 //force unwrap -> !

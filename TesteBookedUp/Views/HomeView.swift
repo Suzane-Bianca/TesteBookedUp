@@ -9,14 +9,30 @@ import SwiftUI
 import Lottie
 
 struct HomeView: View {
+    @Environment(ProgressViewModel.self) private var progressViewModel: ProgressViewModel
+    
     @State private var isPresented: Bool = false
     
+    
     var body: some View {
+        
         NavigationStack {
+            
             ZStack{
+                
+                Color(.lightPurple)
+                    .ignoresSafeArea()
                 Image("TelaInicial")
                 
+                Spacer()
+
+                
                 VStack {
+                    Text("Você leu \(progressViewModel.progress) minutos")
+                        .font(Font.title.bold())
+                        .padding(10)
+                    
+                    
                     LottieView(name: "AnimacaoTelaInicial")
                         .frame(width: 270, height: 280)
                 
@@ -24,6 +40,10 @@ struct HomeView: View {
                         Text("Seu progresso atual")
                             .font(Font.title3.bold())
                             .foregroundColor(Color .darkPurple)
+                        VStack {
+                            ProgressBar(width: 250, height: 20, percent:100)
+                        }
+                        .padding(.all, 10)
                         
                         Button{
                             isPresented = true
@@ -50,5 +70,7 @@ struct HomeView: View {
 }
 
 #Preview {
+    @Previewable @State var progressViewModel = ProgressViewModel()
+    
     HomeView()
 }
