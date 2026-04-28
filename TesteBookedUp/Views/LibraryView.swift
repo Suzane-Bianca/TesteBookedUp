@@ -7,17 +7,38 @@
 
 import SwiftUI
 
+
+//grid
+
+
+//duas Hstack dentro duma VStack
+
 struct LibraryView: View {
+    var readingNumber = 150
+    
+    
     var body: some View {
         ZStack{
-            Image("Biblioteca")
-                .resizable()
-                .edgesIgnoringSafeArea(.all)
+//            Image("Biblioteca")
+//                .resizable()
+//                .edgesIgnoringSafeArea(.all)
             
             VStack {
-                HStack{
-                    Text("oii")
-                        
+                ForEach(Goal.allCases, id: \.rawValue) { goal in
+                    
+                    if readingNumber >= goal.rawValue {
+                        goal.image
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 100)
+                    } else {
+                        Image("block")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 100)
+
+
+                    }
                 }
             }
         }

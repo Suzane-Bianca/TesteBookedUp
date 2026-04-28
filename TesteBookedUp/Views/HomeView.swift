@@ -13,6 +13,7 @@ struct HomeView: View {
     
     @State private var isPresented: Bool = false
     
+    
     var body: some View {
         
         NavigationStack {
@@ -24,7 +25,7 @@ struct HomeView: View {
                 Image("TelaInicial")
                 
                 Spacer()
-                
+
                 
                 VStack {
                     Text("Você leu \(progressViewModel.progress) minutos")

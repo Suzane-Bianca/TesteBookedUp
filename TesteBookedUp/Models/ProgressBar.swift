@@ -6,36 +6,27 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ProgressBar: View {
+    
     @Environment(ProgressViewModel.self) private var progressViewModel: ProgressViewModel
+    
+//    @AppStorage("currentProgress") var currentProgress: Int = 0
     
     @State private var speed = 0.5
 
     var width: CGFloat = 200
     var height: CGFloat = 20
     var percent: CGFloat = 69
+//    
+//    func getCurrentProgress(){
+//        let progress = progressViewModel.progress
+//        currentProgress = progress
+//        UserDefaults.standard.set(progress, forKey: "currentProgress")
+//    }
     
     var body: some View {
-//        VStack{
-//            Gauge(value: 32, in: 0...50){
-//                Text("Speed")
-//            } currentValueLabel: {
-//                Text(Int(speed), format: .number)
-//                    .foregroundColor(Color.gray)
-//            } minimumValueLabel: {
-//                Text("0")
-//            }maximumValueLabel: {
-//                Text("50")
-//            }
-//            .tint(Color("ProgressBar"))
-//            .gaugeStyle(.linearCapacity)
-//            .padding(50)
-//        }
-        
-        
-        
-        
         let multipler = width / 150
         
         ZStack(alignment: .leading){

@@ -10,10 +10,27 @@ import SwiftUI
 
 @Observable
 class ProgressViewModel {
-    var progress: Int = 0
+        var progress: Int = 0
     
-    func increaseProgress(with minutes: Int) -> Int {
-        progress += minutes
-        return progress
-    }
+        func increaseProgress(with minutes: Int) -> Int {
+            progress += minutes
+            return progress
+        }
+    
+        func userCurrentGoal() -> Goal {
+            return .sixth
+        }
+    
+//    @AppStorage("progresso") var progresso: Int = 0
+//    
+//    //var progresso : Int = 0
+//    
+//    func increaseProgress(with minutes: Int) {
+//        progresso += minutes
+//    }
+//    
+//    func getProgress() -> Int {
+//        return progresso
+//    }
+
 }
