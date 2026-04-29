@@ -11,6 +11,8 @@ import Lottie
 struct HomeView: View {
     @Environment(ProgressViewModel.self) private var progressViewModel: ProgressViewModel
     
+    @AppStorage("totalProgress") var totalProgress = 0
+    
     @State private var isPresented: Bool = false
     
     
@@ -28,7 +30,8 @@ struct HomeView: View {
 
                 
                 VStack {
-                    Text("Você leu \(progressViewModel.progress) minutos")
+                    Text("Você leu \(progressViewModel.updateProgress(with: progressViewModel.progress, totalProgress: totalProgress )) minutos")
+//                    Text("Você leu \(progressViewModel.progress) minutos")
                         .font(Font.title.bold())
                         .padding(10)
                     
@@ -38,12 +41,15 @@ struct HomeView: View {
                         
                     VStack{
                         Text("Seu progresso atual")
-                            .font(Font.title3.bold())
+                            .font(Font.title2.bold())
                             .foregroundColor(Color .darkPurple)
                         VStack {
-                            ProgressBar(width: 250, height: 20, percent:100)
+                            ProgressBar(width: 260, height: 20, percent: CGFloat(progressViewModel.updateProgress(with: progressViewModel.progress, totalProgress: totalProgress )))
+                            Text("\(progressViewModel.updateProgress(with: progressViewModel.progress, totalProgress: totalProgress ))/ \(Goal.first)minutos")
+                                .frame(maxWidth: 260, alignment: .trailing)
+                                .padding(.bottom, 4)
                         }
-                        .padding(.all, 10)
+                        .padding(.all, 2)
                         
                         Button{
                             isPresented = true

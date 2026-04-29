@@ -12,6 +12,8 @@ import Combine
 var timer: Timer = Timer()
 
 struct TimerView: View {
+    @AppStorage("totalProgress") var totalProgress = 0
+    
     @Environment(ProgressViewModel.self) private var progressViewModel: ProgressViewModel
     
     @State private var showingAlert: Bool = false
@@ -119,6 +121,7 @@ struct TimerView: View {
                                 }
                                 Button ("Concluir"){
                                     toSheet = true
+                                    totalProgress += secondsToMinutes(seconds: counter)
 //                                    progressViewModel.increaseProgress(with: secondsToMinutes(seconds: counter))
                                     if (toSheet) {
                                         isTimerRunning = false
@@ -166,12 +169,12 @@ struct TimerView: View {
     }
 }
 
-#Preview {
-    @Previewable @State var progressViewModel = ProgressViewModel()
-    
-    TimerView()
-        .environment(progressViewModel)
-}
+//#Preview {
+//    @Previewable @State var progressViewModel = ProgressViewModel(progress: <#ProgressInGoal#>)
+//    
+//    TimerView()
+//        .environment(progressViewModel)
+//}
 
 //force unwrap -> !
 // nil coalescing -> ??

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 //Meta 1: 60 min
 //Meta 2: 100 min
@@ -24,6 +25,19 @@ import SwiftUI
 //
 //#Preview {
 //    Metas()
+//}
+
+//@Model
+//class ProgressInGoal {
+//    
+//    var goal: Goal
+//    var progress: Int = 0
+//    
+//    init(goal: Goal, progress: Int) {
+//        self.goal = goal
+//        self.progress = progress
+//    }
+//    
 //}
 
 enum Goal: Int, CaseIterable {
