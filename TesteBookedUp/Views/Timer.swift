@@ -132,9 +132,9 @@ struct TimerView: View {
                                 Text("Salvar essa sessão de leitura registrará seu progresso.")
                             }
                             .sheet(isPresented: $toSheet){
-//                                SheetOneView()
-//                                    .background(Color(.systemBackground))
-//                                    .presentationDragIndicator(.visible)
+                                SheetOneView()
+                                    .background(Color(.systemBackground))
+                                    .presentationDragIndicator(.visible)
                             }
                     }
                 }
