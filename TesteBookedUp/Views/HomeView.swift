@@ -17,16 +17,12 @@ struct HomeView: View {
     var body: some View {
         
         NavigationStack {
-            
             ZStack{
-                
                 Color(.lightPurple)
                     .ignoresSafeArea()
                 Image("TelaInicial")
                 
                 Spacer()
-
-                
                 VStack {
                     Text("Você leu \(progressViewModel.progress) minutos")
                         .font(Font.title.bold())
