@@ -57,7 +57,7 @@ struct GeometryReader: View {
                     
                 }
                 .padding(.horizontal, 20)
-                .padding(.vertical, 50)
+//                .padding(.vertical, 50)
                 
                 VStack(spacing: 0) {
                     HStack(alignment: .bottom, spacing: 50) {
