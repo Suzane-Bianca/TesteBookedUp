@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GoalView: View {
     
-    @AppStorage("totalProgress") var totalProgress = 0
+    @AppStorage("totalProgress") var totalProgress = 61
     
     let goal: Goal
     
@@ -41,9 +41,11 @@ struct GeometryReader: View {
                 Image("TopoDaEstante")
                     .resizable()
                     .scaledToFit()
+                    .overlay(Text("Bibliotea Mágica")
+                        .bold())
                 
                 VStack(spacing: 0) {
-                    HStack(alignment: .bottom) {
+                    HStack(alignment: .bottom, spacing: 50) {
                         GoalView(goal: .first)
                         GoalView(goal: .sec)
                         GoalView(goal: .third)
@@ -55,9 +57,10 @@ struct GeometryReader: View {
                     
                 }
                 .padding(.horizontal, 20)
+                .padding(.vertical, 50)
                 
                 VStack(spacing: 0) {
-                    HStack {
+                    HStack(alignment: .bottom, spacing: 50) {
                         GoalView(goal: .fourth)
                         GoalView(goal: .fifth)
                         GoalView(goal: .sixth)
