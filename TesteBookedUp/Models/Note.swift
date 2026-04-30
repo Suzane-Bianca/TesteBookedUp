@@ -11,11 +11,11 @@ import SwiftData
 @Model
 class Note: Identifiable, Hashable{
     var id = UUID()
-    var bookName: Book
+    var bookName: String?
     var reactionCat: Reaction
     var descriptionNote: String
     
-    init(bookName: Book, reactionCat: Reaction, descriptionNote: String) {
+    init(bookName: String?, reactionCat: Reaction, descriptionNote: String) {
         self.bookName = bookName
         self.reactionCat = reactionCat
         self.descriptionNote = descriptionNote

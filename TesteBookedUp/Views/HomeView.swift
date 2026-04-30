@@ -54,6 +54,7 @@ struct HomeView: View {
                                 .navigationDestination(isPresented: $isPresented){
                                     TimerView()
                                 }
+
                         }
                     }
                     .padding(50)

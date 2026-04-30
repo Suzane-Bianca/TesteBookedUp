@@ -12,7 +12,9 @@ struct NoteDetailView: View {
     
     var body: some View {
         VStack (alignment: .leading, spacing: 20){
-            Text(newNote.bookName.nome)
+            if let bookName = newNote.bookName {
+                Text(bookName)
+            }
             Text(newNote.reactionCat.title)
             Text(newNote.descriptionNote)
         }

@@ -25,7 +25,6 @@ struct SheetOneView: View {
     @State var selectedReaction: Reaction?
     @State var selectedBook: Book?
 
-    let defaultBook = Book(nome: "Sem Nome")
     let defaultReaction: Reaction = .happy
     
     var body: some View {
@@ -157,11 +156,11 @@ struct SheetOneView: View {
             .toolbar {
                 Button {
                     print(notes)
-                    let createNote = CreateNote(bookName: selectedBook ?? defaultBook, reactionCat: selectedReaction ?? defaultReaction, descriptionNote: description)
+                    
+                    let newNote = Note(bookName: selectedBook?.nome, reactionCat: selectedReaction ?? defaultReaction, descriptionNote: description)
                 
                     do {
-                        print(createNote.bookName.nome)
-                        modelContext.insert(createNote)
+                        modelContext.insert(newNote)
                         try modelContext.save()
                         print(notes)
 
@@ -179,10 +178,6 @@ struct SheetOneView: View {
         }
     }
     
-    func CreateNote(bookName: Book, reactionCat: Reaction, descriptionNote: String) -> Note {
-        let newNote = Note(bookName: selectedBook ?? defaultBook, reactionCat: selectedReaction ?? defaultReaction, descriptionNote: descriptionNote)
-        return newNote
-    }
 }
 
 #Preview {
