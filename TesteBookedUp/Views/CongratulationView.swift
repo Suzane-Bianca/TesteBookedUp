@@ -6,10 +6,37 @@
 //
 
 import SwiftUI
+import Lottie
 
 struct CongratulationView: View {
+    @State private var isPresented: Bool = false
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView{
+            VStack{
+                Spacer()
+                LottieView(name: "CongratulationCat")
+                    .frame(width: 309, height: 323.02)
+                Text("Parabéns!!")
+                    .font(Font.title.bold())
+                Text("Sessão concluída com sucesso!")
+                    .font(Font.title2)
+                Spacer(minLength: 180)
+            }
+            .foregroundColor(.black)
+        }
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem (placement: .topBarLeading) {
+                Button {
+                    dismiss()
+                    dismiss()
+                } label: {
+                    Label("Sair", systemImage: "xmark")
+                }
+            }
+        }
     }
 }
 

@@ -9,12 +9,27 @@ import SwiftUI
 import SwiftData
 
 struct SectionTemplatView: View {
-    @Query private var notes: [Note]
+    @Environment(\.modelContext) private var modelContext
+    @Query(sort:\Note.id, order: .reverse) private var notes: [Note]
     
     var body: some View {
         NavigationStack{
             List(notes) { nota in
                 NoteDetailView(newNote: nota)
+                    .swipeActions{
+                        Button (role: .destructive){
+                            modelContext.delete(nota)
+                        } label: {
+                            Label("Delete", systemImage: "trash")
+                        }
+                        
+                        Button {
+                        
+                        } label: {
+                            Label ("Edit", systemImage: "pencil")
+                        }
+                        .tint(.blue)
+                    }
             }
             .navigationTitle("Sessões")
             .toolbar {
@@ -24,6 +39,7 @@ struct SectionTemplatView: View {
                     Label ("Adicionar anotação", systemImage: "plus")
                 }
             }
+            
         }
         .listRowSpacing(10)
         .onAppear {

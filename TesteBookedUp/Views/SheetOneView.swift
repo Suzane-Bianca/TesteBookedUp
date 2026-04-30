@@ -12,13 +12,15 @@ import SwiftData
 
 struct SheetOneView: View {
     @Environment(\.modelContext) var modelContext
+    @Environment(\.dismiss) var dismiss
     
-    @Query(sort: \Book.id) private var booksSheet: [Book]
+    @Query(sort: \Book.id, order: .reverse) private var booksSheet: [Book]
     @Query private var notes: [Note]
     
     @State private var description: String = ""
     @State private var editingBook: Book? = nil
     @State private var isPresented: Bool = false
+    @State private var isCongratulations: Bool = false
     
     @State private var saveNotes: Note? = nil
     
@@ -150,27 +152,28 @@ struct SheetOneView: View {
                 }
                 .scrollContentBackground(.hidden)
                 .listRowSpacing(10)
+                .navigationBarTitle("Anotações", displayMode: .inline)
+
             }
             
             
             .toolbar {
-                Button {
-                    print(notes)
-                    
-                    let newNote = Note(bookName: selectedBook?.nome, reactionCat: selectedReaction ?? defaultReaction, descriptionNote: description)
-                
-                    do {
+                ToolbarItem(placement: .confirmationAction){
+                    Button {
+                        let newNote = Note(bookName: selectedBook?.nome, reactionCat: selectedReaction ?? defaultReaction, descriptionNote: description)
                         modelContext.insert(newNote)
-                        try modelContext.save()
-                        print(notes)
-
-                    } catch {
-                        print(error)
+                        isCongratulations = true
+                    } label: {
+                        Label ("Concluir", systemImage: "checkmark")
+                            .navigationDestination(isPresented: $isCongratulations){
+                                CongratulationView()
+                            }
                     }
-                } label: {
-                    Label ("Concluir", systemImage: "checkmark")
+                    .disabled((selectedBook == nil))
+                    
                 }
             }
+            
             .navigationDestination(item: $editingBook) { book in
                 SheetTwoView(editingBook: book)
             }

@@ -11,11 +11,19 @@ struct NoteDetailView: View {
     let newNote: Note
     
     var body: some View {
-        VStack (alignment: .leading, spacing: 20){
-            if let bookName = newNote.bookName {
-                Text(bookName)
+        VStack (alignment: .leading){
+            HStack {
+                Image(newNote.reactionCat.image)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 60, height: 62.72)
+                if let bookName = newNote.bookName {
+                    Text(bookName)
+                        .bold()
+                        .foregroundColor(Color.darkPurple)
+                }
+                Spacer()
             }
-            Text(newNote.reactionCat.title)
             Text(newNote.descriptionNote)
         }
     }

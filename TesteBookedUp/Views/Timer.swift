@@ -112,6 +112,7 @@ struct TimerView: View {
                         isTimerRunning = false
                         progressViewModel.increaseProgress(with: secondsToMinutes(seconds: counter))
                         timer.invalidate()
+                        
                     } label: {
                         Label("Concluir sessão", systemImage: "")
                             .font(Font.title3.bold())
