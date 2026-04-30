@@ -41,6 +41,7 @@ import SwiftData
 //}
 
 enum Goal: Int, CaseIterable {
+    
     case first = 60
     case sec = 100
     case third = 150
@@ -48,6 +49,22 @@ enum Goal: Int, CaseIterable {
     case fifth = 300
     case sixth = 360
     
+    var unlockProgress: Int {
+        switch self {
+        case .first:
+            0
+        case .sec:
+            60
+        case .third:
+            160
+        case .fourth:
+            210
+        case .fifth:
+            310
+        case .sixth:
+            610
+        }
+    }
     
     var image: Image {
         switch self {
