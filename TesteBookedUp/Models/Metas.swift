@@ -49,6 +49,39 @@ enum Goal: Int, CaseIterable {
     case fifth = 300
     case sixth = 360
     
+    var calc: CGFloat {
+        switch self {
+        case .first:
+            return 60
+        case .sec:
+            return 100
+        case .third:
+            return 150
+        case .fourth:
+            return 210
+        case .fifth:
+            return 300
+        case .sixth:
+            return 360
+        }
+    }
+    
+    var minutes: String {
+        switch self {
+        case .first:
+            return "60"
+        case .sec:
+            return "100"
+        case .third:
+            return "150"
+        case .fourth:
+            return "210"
+        case .fifth:
+            return "300"
+        case .sixth:
+            return "360"
+        }
+    }
     var unlockProgress: Int {
         switch self {
         case .first:

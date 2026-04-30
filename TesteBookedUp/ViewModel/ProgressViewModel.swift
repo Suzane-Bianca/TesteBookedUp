@@ -12,6 +12,7 @@ import SwiftUI
 class ProgressViewModel {
     var progress: Int = 0
     var totalProgress: Int = 0
+    var Goal: Goal = .first
     
     func increaseProgress(with minutes: Int) -> Int {
             progress += minutes
@@ -40,6 +41,12 @@ class ProgressViewModel {
         return totalProgress
         
     }
+    
+//    func currentGoal() -> Goal {
+//        
+//    }
+    
+   
     
 //    @AppStorage("progresso") var progresso: Int = 0
 //    

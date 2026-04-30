@@ -11,10 +11,12 @@ import Lottie
 struct HomeView: View {
     @Environment(ProgressViewModel.self) private var progressViewModel: ProgressViewModel
     
+    @State private var userGoal: Goal = .sec
+    
     @AppStorage("totalProgress") var totalProgress = 0
     
     @State private var isPresented: Bool = false
-    
+    var aaa : Goal = .first
     
     var body: some View {
         
@@ -45,7 +47,7 @@ struct HomeView: View {
                             .foregroundColor(Color .darkPurple)
                         VStack {
                             ProgressBar(width: 260, height: 20, percent: CGFloat(progressViewModel.updateProgress(with: progressViewModel.progress, totalProgress: totalProgress )))
-                            Text("\(progressViewModel.updateProgress(with: progressViewModel.progress, totalProgress: totalProgress ))/ \(Goal.first)minutos")
+                            Text("\(progressViewModel.updateProgress(with: progressViewModel.progress, totalProgress: totalProgress )) / \(userGoal.minutes) minutos")
                                 .frame(maxWidth: 260, alignment: .trailing)
                                 .padding(.bottom, 4)
                         }

@@ -12,6 +12,8 @@ struct ProgressBar: View {
         
     @Environment(ProgressViewModel.self) private var progressViewModel: ProgressViewModel
     @AppStorage("totalProgress") var totalProgress = 0
+    @State private var userGoal: Goal = .sec
+    
     
     @State private var speed = 0.5
 
@@ -19,9 +21,10 @@ struct ProgressBar: View {
     var height: CGFloat = 20
     var percent: CGFloat = 69
 
+
     
     var body: some View {
-        let multipler = width / 150
+        let multipler = width / userGoal.calc
         
         ZStack(alignment: .leading){
             RoundedRectangle(cornerRadius: 20, style: .continuous)

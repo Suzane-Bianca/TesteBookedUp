@@ -13,6 +13,7 @@ struct TesteBookedUpApp: App {
     
     @AppStorage("totalProgress") var totalProgress = 0
 
+
     
     @State var progressViewModel = ProgressViewModel()
     
@@ -22,6 +23,7 @@ struct TesteBookedUpApp: App {
                 .environment(progressViewModel)
                 .onChange(of: totalProgress) {
                     progressViewModel.progress = totalProgress
+                    
                 }
         }
 //        .modelContainer(for: ProgressInGoal.self)
