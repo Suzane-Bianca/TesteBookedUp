@@ -30,10 +30,12 @@ struct CongratulationView: View {
         .toolbar {
             ToolbarItem (placement: .topBarLeading) {
                 Button {
-                    dismiss()
-                    dismiss()
+                    isPresented = true
                 } label: {
                     Label("Sair", systemImage: "xmark")
+                }
+                .fullScreenCover(isPresented: $isPresented){
+                    ContentView()
                 }
             }
         }

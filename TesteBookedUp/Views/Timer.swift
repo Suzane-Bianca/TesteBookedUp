@@ -159,8 +159,8 @@ struct TimerView: View {
                             }
                             .keyboardShortcut(.defaultAction)
                         } message: {
-                        Text("Ao sair sua sessão será finalizada sem salvar.")
-                    }
+                            Text("Ao sair sua sessão será finalizada sem salvar.")
+                        }
                 }
             }
         }

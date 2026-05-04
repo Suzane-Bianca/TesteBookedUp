@@ -27,6 +27,7 @@ struct HomeView: View {
                     Text("Você leu \(progressViewModel.progress) minutos")
                         .font(Font.title.bold())
                         .padding(10)
+                        .foregroundColor(Color .black)
                     
                     
                     LottieView(name: "AnimacaoTelaInicial")
