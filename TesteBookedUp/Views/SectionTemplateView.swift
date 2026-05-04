@@ -22,13 +22,6 @@ struct SectionTemplatView: View {
                         } label: {
                             Label("Delete", systemImage: "trash")
                         }
-                        
-                        Button {
-                        
-                        } label: {
-                            Label ("Edit", systemImage: "pencil")
-                        }
-                        .tint(.blue)
                     }
             }
             .navigationTitle("Sessões")
