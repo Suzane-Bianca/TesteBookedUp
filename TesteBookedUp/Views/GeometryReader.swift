@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GoalView: View {
     
-    @AppStorage("totalProgress") var totalProgress = 700
+    @AppStorage("totalProgress") var totalProgress = 0
     
     let goal: Goal
     

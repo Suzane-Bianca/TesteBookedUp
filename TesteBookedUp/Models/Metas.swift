@@ -66,6 +66,23 @@ enum Goal: Int, CaseIterable {
         }
     }
     
+    var zerar: Int {
+        switch self {
+        case .first:
+            0
+        case .sec:
+            0
+        case .third:
+            0
+        case .fourth:
+            0
+        case .fifth:
+            0
+        case .sixth:
+            0
+        }
+    }
+    
     var minutes: String {
         switch self {
         case .first:
