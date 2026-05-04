@@ -17,7 +17,6 @@ struct TesteBookedUpApp: App {
             ContentView()
                 .environment(progressViewModel)
         }
-        
-        .modelContainer(for: [Book.self])
+        .modelContainer(for: [Book.self, Note.self])
     }
 }

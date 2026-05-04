@@ -21,9 +21,9 @@ struct LibraryView: View {
     
     var body: some View {
         ZStack{
-//            Image("Biblioteca")
-//                .resizable()
-//                .edgesIgnoringSafeArea(.all)
+            Image("Biblioteca")
+                .resizable()
+                .edgesIgnoringSafeArea(.all)
             
             VStack {
                 ForEach(Goal.allCases, id: \.rawValue) { goal in
