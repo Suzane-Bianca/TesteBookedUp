@@ -32,11 +32,21 @@ struct SectionTemplatView: View {
                     Label ("Adicionar anotação", systemImage: "plus")
                 }
             }
-            
+
         }
+        
         .listRowSpacing(10)
         .onAppear {
             print(notes)
+            
         }
+        .background(Color.red)
     }
+}
+
+#Preview {
+    @Previewable @State var progressViewModel = ProgressViewModel()
+    
+    SectionTemplatView()
+        .environment(progressViewModel)
 }

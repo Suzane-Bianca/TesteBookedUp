@@ -42,7 +42,9 @@ struct GeometryReader: View {
                     .resizable()
                     .scaledToFit()
                     .overlay(Text("Biblioteca Mágica")
-                        .bold())
+                        .font(Font.title2)
+                        .fontWeight(Font.Weight.semibold))
+
                 
                 VStack(spacing: 0) {
                     HStack(alignment: .bottom, spacing: 50) {
