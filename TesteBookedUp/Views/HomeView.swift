@@ -21,26 +21,23 @@ struct HomeView: View {
     var body: some View {
         
         NavigationStack {
-            
             ZStack{
-                
                 Color(.lightPurple)
                     .ignoresSafeArea()
                 Image("TelaInicial")
                 
                 Spacer()
-
-                
                 VStack {
                     Text("Você leu \(progressViewModel.updateProgress(with: progressViewModel.progress, totalProgress: totalProgress )) minutos")
 //                    Text("Você leu \(progressViewModel.progress) minutos")
                         .font(Font.title.bold())
                         .padding(10)
+                        .foregroundColor(Color .black)
                     
                     
                     LottieView(name: "AnimacaoTelaInicial")
                         .frame(width: 270, height: 280)
-                        
+                
                     VStack{
                         Text("Seu progresso atual")
                             .font(Font.title.bold())
@@ -68,9 +65,9 @@ struct HomeView: View {
                                 .navigationDestination(isPresented: $isPresented){
                                     TimerView()
                                 }
+
                         }
                     }
-                    
                     .padding(50)
                     .background(.white)
                     .cornerRadius(45)

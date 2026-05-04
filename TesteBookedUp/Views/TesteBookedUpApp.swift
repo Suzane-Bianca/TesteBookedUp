@@ -26,6 +26,6 @@ struct TesteBookedUpApp: App {
                     
                 }
         }
-//        .modelContainer(for: ProgressInGoal.self)
+        .modelContainer(for: [Book.self, Note.self])
     }
 }

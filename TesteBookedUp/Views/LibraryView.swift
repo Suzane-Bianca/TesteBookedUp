@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 
 //grid
@@ -16,10 +17,11 @@ import SwiftUI
 struct LibraryView: View {
     var readingNumber = 150
     
+    @Query private var booksSheet: [Book]
     
     var body: some View {
-        ZStack(alignment:.center){
-            Image("Fundo")
+        ZStack{
+            Image("Biblioteca")
                 .resizable()
                 .scaledToFill()
                 .edgesIgnoringSafeArea(.all)

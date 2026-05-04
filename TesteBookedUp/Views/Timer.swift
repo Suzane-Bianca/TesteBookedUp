@@ -15,6 +15,7 @@ struct TimerView: View {
     @AppStorage("totalProgress") var totalProgress = 0
     
     @Environment(ProgressViewModel.self) private var progressViewModel: ProgressViewModel
+    @Environment(\.dismiss) private var dismiss
     
     @State private var showingAlert: Bool = false
     
@@ -23,6 +24,8 @@ struct TimerView: View {
     @State var isTimerRunning:Bool = false
     @State private var toSheet: Bool = false
     @State var timerPontuation: Int = 0
+    @State private var isPresented: Bool = false
+    @State private var dismissButton: Bool = false
 
     var body: some View {
         
@@ -53,7 +56,7 @@ struct TimerView: View {
                     Spacer()
                     Spacer()
                     Spacer()
-
+                    
                     LottieView(name: "Lendo Gato Magico - Meta 1")
                         .frame(width: 225.77, height: 250)
                     
@@ -105,8 +108,13 @@ struct TimerView: View {
                     Spacer()
                     Spacer()
                     Spacer()
+                    
                     Button {
                         showingAlert = true
+                        isTimerRunning = false
+                        progressViewModel.increaseProgress(with: secondsToMinutes(seconds: counter))
+                        timer.invalidate()
+                        
                     } label: {
                         Label("Concluir sessão", systemImage: "")
                             .font(Font.title3.bold())
@@ -134,11 +142,34 @@ struct TimerView: View {
                                 Text("Salvar essa sessão de leitura registrará seu progresso.")
                             }
                             .sheet(isPresented: $toSheet){
-//                                SheetOneView()
-//                                    .background(Color(.systemBackground))
-//                                    .presentationDragIndicator(.visible)
+                                SheetOneView()
+                                    .background(Color(.systemBackground))
+                                    .interactiveDismissDisabled()
                             }
+                        
                     }
+                }
+            }
+        }
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem (placement: .topBarLeading) {
+                Button {
+                    dismissButton = true
+                    isTimerRunning = false
+                    timer.invalidate()
+                } label: {
+                    Label("Sair", systemImage: "chevron.backward")
+                        .alert("Deseja sair da sessão?", isPresented: $dismissButton){
+                            Button("Continuar") {
+                            }
+                            Button ("Sair"){
+                                dismiss()
+                            }
+                            .keyboardShortcut(.defaultAction)
+                        } message: {
+                            Text("Ao sair sua sessão será finalizada sem salvar.")
+                        }
                 }
             }
         }
@@ -169,15 +200,9 @@ struct TimerView: View {
     }
 }
 
-//#Preview {
-//    @Previewable @State var progressViewModel = ProgressViewModel(progress: <#ProgressInGoal#>)
-//    
-//    TimerView()
-//        .environment(progressViewModel)
-//}
-
-//force unwrap -> !
-// nil coalescing -> ??
-//optional binding -> if let
-
-
+#Preview {
+    @Previewable @State var progressViewModel = ProgressViewModel()
+    
+    TimerView()
+        .environment(progressViewModel)
+}
