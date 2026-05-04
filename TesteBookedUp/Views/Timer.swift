@@ -12,6 +12,8 @@ import Combine
 var timer: Timer = Timer()
 
 struct TimerView: View {
+    @AppStorage("totalProgress") var totalProgress = 0
+    
     @Environment(ProgressViewModel.self) private var progressViewModel: ProgressViewModel
     @Environment(\.dismiss) private var dismiss
     
@@ -127,6 +129,13 @@ struct TimerView: View {
                                 }
                                 Button ("Concluir"){
                                     toSheet = true
+                                    totalProgress += secondsToMinutes(seconds: counter)
+//                                    progressViewModel.increaseProgress(with: secondsToMinutes(seconds: counter))
+                                    if (toSheet) {
+                                        isTimerRunning = false
+                                        progressViewModel.increaseProgress(with: secondsToMinutes(seconds: counter))
+                                        timer.invalidate()
+                                    }
                                 }
                                 .keyboardShortcut(.defaultAction)
                             } message: {

@@ -18,7 +18,7 @@ struct ContentView: View {
             }
             
             Tab("Biblioteca", systemImage: "books.vertical", value: 0){
-                LibraryView()
+                GeometryReader()
             }
             
             Tab("Diário", systemImage: "book", value: 0){

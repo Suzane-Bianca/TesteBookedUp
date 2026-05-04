@@ -11,8 +11,12 @@ import Lottie
 struct HomeView: View {
     @Environment(ProgressViewModel.self) private var progressViewModel: ProgressViewModel
     
-    @State private var isPresented: Bool = false
+    @State private var userGoal: Goal = .sec
     
+    @AppStorage("totalProgress") var totalProgress = 0
+    
+    @State private var isPresented: Bool = false
+    var aaa : Goal = .first
     
     var body: some View {
         
@@ -24,7 +28,8 @@ struct HomeView: View {
                 
                 Spacer()
                 VStack {
-                    Text("Você leu \(progressViewModel.progress) minutos")
+                    Text("Você leu \(progressViewModel.updateProgress(with: progressViewModel.progress, totalProgress: totalProgress )) minutos")
+//                    Text("Você leu \(progressViewModel.progress) minutos")
                         .font(Font.title.bold())
                         .padding(10)
                         .foregroundColor(Color .black)
@@ -35,12 +40,17 @@ struct HomeView: View {
                 
                     VStack{
                         Text("Seu progresso atual")
-                            .font(Font.title3.bold())
+                            .font(Font.title.bold())
                             .foregroundColor(Color .darkPurple)
                         VStack {
-                            ProgressBar(width: 250, height: 20, percent:100)
+                            ProgressBar(width: 260, height: 20, percent: CGFloat(progressViewModel.updateProgress(with: progressViewModel.progress, totalProgress: totalProgress )))
+                                .padding(.vertical, 4)
+                            Text("\(progressViewModel.updateProgress(with: progressViewModel.progress, totalProgress: totalProgress )) / \(userGoal.minutes) minutos")
+                                .fontWeight(Font.Weight.semibold)
+                                .frame(maxWidth: 260, alignment: .trailing)
+                                .padding(.bottom, 24)
                         }
-                        .padding(.all, 10)
+                        .padding(.all, 2)
                         
                         Button{
                             isPresented = true
@@ -71,4 +81,6 @@ struct HomeView: View {
     @Previewable @State var progressViewModel = ProgressViewModel()
     
     HomeView()
+        .environment(progressViewModel)
+
 }
