@@ -12,6 +12,7 @@ import SwiftUI
 class ProgressViewModel {
     var progress: Int = 0
     var totalProgress: Int = 0
+    var progressWork: Int = 0
     var Goal: Goal = .first
     
     func increaseProgress(with minutes: Int) -> Int {
@@ -36,10 +37,37 @@ class ProgressViewModel {
         }
     }
     
-    func updateProgress(with minutes: Int, totalProgress: Int)->Int {
+    func VisuProgress(with minutes: Int, totalProgress: Int)->Int {
         self.totalProgress = progress
         return totalProgress
         
+    }
+    
+    func updateProgres(with minutes: Int, totalProgress: Int) -> Int{
+        self.progressWork = progress
+        
+        if(progressWork <= 60){
+            return 60
+        } else if(progressWork > 60 || progressWork <= 100 ){
+            //            clearProgress(with: progressWork, totalProgress: totalProgress) Nao sei se faço isso
+            return 100
+        } else if(progressWork > 100 || progressWork <= 150){
+            return 150
+        } else if(progressWork > 150 || progressWork <= 210){
+            return 210
+        } else if(progressWork > 210 || progressWork <= 300){
+            return 300
+        } else if (progressWork > 300 || progress <= 360){
+            return 360
+        }
+        
+        return 360
+    }
+    
+    func clearProgress(with progressWork: Int, totalProgress: Int) -> Int {
+        self.totalProgress = progressWork
+        self.progressWork = 0
+        return progressWork
     }
     
 //    func currentGoal() -> Goal {

@@ -28,7 +28,7 @@ struct HomeView: View {
                 
                 Spacer()
                 VStack {
-                    Text("Você leu \(progressViewModel.updateProgress(with: progressViewModel.progress, totalProgress: totalProgress )) minutos")
+                    Text("Você leu \(progressViewModel.VisuProgress(with: progressViewModel.progress, totalProgress: totalProgress )) minutos")
 //                    Text("Você leu \(progressViewModel.progress) minutos")
                         .font(Font.title.bold())
                         .padding(10)
@@ -43,9 +43,9 @@ struct HomeView: View {
                             .font(Font.title.bold())
                             .foregroundColor(Color .darkPurple)
                         VStack {
-                            ProgressBar(width: 260, height: 20, percent: CGFloat(progressViewModel.updateProgress(with: progressViewModel.progress, totalProgress: totalProgress )))
+                            ProgressBar(width: 260, height: 20, percent: CGFloat(progressViewModel.VisuProgress(with: progressViewModel.progress, totalProgress: totalProgress )))
                                 .padding(.vertical, 4)
-                            Text("\(progressViewModel.updateProgress(with: progressViewModel.progress, totalProgress: totalProgress )) / \(userGoal.minutes) minutos")
+                            Text("\(progressViewModel.VisuProgress(with: progressViewModel.progress, totalProgress: totalProgress )) / \(progressViewModel.updateProgres(with: progressViewModel.progressWork, totalProgress: totalProgress )) minutos")
                                 .fontWeight(Font.Weight.semibold)
                                 .frame(maxWidth: 260, alignment: .trailing)
                                 .padding(.bottom, 24)

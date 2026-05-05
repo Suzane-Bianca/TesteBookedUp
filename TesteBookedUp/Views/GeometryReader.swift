@@ -64,6 +64,7 @@ struct GeometryReader: View {
                 VStack(spacing: 0) {
                     HStack(alignment: .bottom, spacing: 50) {
                         GoalView(goal: .fourth)
+
                         GoalView(goal: .fifth)
                         GoalView(goal: .sixth)
                     }
