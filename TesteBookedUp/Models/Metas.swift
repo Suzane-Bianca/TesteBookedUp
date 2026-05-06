@@ -49,6 +49,9 @@ enum Goal: Int, CaseIterable {
     case fifth = 300
     case sixth = 360
     
+//    static var allCases: [Goal] = [.first, .sec, .third, .fourth, .fifth, .sixth]
+    
+    
     var calc: CGFloat {
         switch self {
         case .first:
@@ -108,11 +111,11 @@ enum Goal: Int, CaseIterable {
         case .third:
             160
         case .fourth:
-            210
-        case .fifth:
             310
+        case .fifth:
+            520
         case .sixth:
-            610
+            820
         }
     }
     

@@ -24,7 +24,7 @@ struct ProgressBar: View {
 
     
     var body: some View {
-        let multipler = width / CGFloat(progressViewModel.updateProgres(with: progressViewModel.progress, totalProgress: progressWork))
+        let multipler = width / CGFloat(progressViewModel.updateProgress(with: progressViewModel.progress, totalProgress: progressWork))
         
         ZStack(alignment: .leading){
             RoundedRectangle(cornerRadius: 20, style: .continuous)
