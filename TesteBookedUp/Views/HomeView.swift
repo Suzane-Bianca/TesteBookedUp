@@ -14,6 +14,7 @@ struct HomeView: View {
     @State private var userGoal: Goal = .sec
     
     @AppStorage("totalProgress") var totalProgress = 0
+//    @AppStorage("progressWork") var progressWork = 0
     
     @State private var isPresented: Bool = false
     var aaa : Goal = .first
@@ -29,7 +30,6 @@ struct HomeView: View {
                 Spacer()
                 VStack {
                     Text("Você leu \(progressViewModel.VisuProgress(with: progressViewModel.progress, totalProgress: totalProgress )) minutos")
-//                    Text("Você leu \(progressViewModel.progress) minutos")
                         .font(Font.title.bold())
                         .padding(10)
                         .foregroundColor(Color .black)
@@ -49,6 +49,7 @@ struct HomeView: View {
                                 .fontWeight(Font.Weight.semibold)
                                 .frame(maxWidth: 260, alignment: .trailing)
                                 .padding(.bottom, 24)
+                                .foregroundColor(Color .black)
                         }
                         .padding(.all, 2)
                         

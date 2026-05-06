@@ -114,7 +114,6 @@ struct TimerView: View {
                         isTimerRunning = false
                         progressViewModel.increaseProgress(with: secondsToMinutes(seconds: counter))
                         timer.invalidate()
-                        
                     } label: {
                         Label("Concluir sessão", systemImage: "")
                             .font(Font.title3.bold())
@@ -130,7 +129,6 @@ struct TimerView: View {
                                 Button ("Concluir"){
                                     toSheet = true
                                     totalProgress += secondsToMinutes(seconds: counter)
-//                                    progressViewModel.increaseProgress(with: secondsToMinutes(seconds: counter))
                                     if (toSheet) {
                                         isTimerRunning = false
                                         progressViewModel.increaseProgress(with: secondsToMinutes(seconds: counter))
@@ -142,7 +140,7 @@ struct TimerView: View {
                                 Text("Salvar essa sessão de leitura registrará seu progresso.")
                             }
                             .sheet(isPresented: $toSheet){
-                                SheetOneView()
+                                SheetOneView(sessionTime: secondsToMinutes(seconds: counter))
                                     .background(Color(.systemBackground))
                                     .interactiveDismissDisabled()
                             }
@@ -175,6 +173,8 @@ struct TimerView: View {
         }
         .toolbarVisibility(.hidden, for: .tabBar)
     }
+    
+    // PESQUISAR SOBRE SWIFT FORMATTER / FORMAT STYLE
     
     func timerCounter(_ timer: Timer) {
         counter += 1

@@ -8,8 +8,6 @@
 import SwiftUI
 import SwiftData
 
-
-
 struct SheetOneView: View {
     @Environment(\.modelContext) var modelContext
     @Environment(\.dismiss) var dismiss
@@ -28,6 +26,8 @@ struct SheetOneView: View {
     @State var selectedBook: Book?
 
     let defaultReaction: Reaction = .happy
+    
+    let sessionTime: Int
     
     var body: some View {
         NavigationStack{
@@ -153,14 +153,13 @@ struct SheetOneView: View {
                 .scrollContentBackground(.hidden)
                 .listRowSpacing(10)
                 .navigationBarTitle("Anotações", displayMode: .inline)
-
             }
             
             
             .toolbar {
                 ToolbarItem(placement: .confirmationAction){
                     Button {
-                        let newNote = Note(bookName: selectedBook?.nome, reactionCat: selectedReaction ?? defaultReaction, descriptionNote: description)
+                        let newNote = Note(bookName: selectedBook?.nome, reactionCat: selectedReaction ?? defaultReaction, descriptionNote: description, duration: sessionTime)
                         modelContext.insert(newNote)
                         isCongratulations = true
                     } label: {
@@ -184,7 +183,7 @@ struct SheetOneView: View {
 }
 
 #Preview {
-    SheetOneView()
+    SheetOneView(sessionTime: 100)
 }
 
 

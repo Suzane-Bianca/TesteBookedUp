@@ -12,27 +12,39 @@ struct SectionTemplatView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort:\Note.id, order: .reverse) private var notes: [Note]
     
+    @State private var selected: Note?
+    
     var body: some View {
         NavigationStack{
             List(notes) { nota in
-                NoteDetailView(newNote: nota)
-                    .swipeActions{
-                        Button (role: .destructive){
-                            modelContext.delete(nota)
-                        } label: {
-                            Label("Delete", systemImage: "trash")
-                        }
+                Button {
+                    selected = nota
+                } label: {
+                    NoteDetailView(newNote: nota)
+                }
+                .swipeActions{
+                    Button (role: .destructive){
+                        modelContext.delete(nota)
+                    } label: {
+                        Label("Delete", systemImage: "trash")
                     }
+                }
+            }
+            .sheet(item: $selected){ nota in
+                CardTemplatView(notes: nota)
+                    .background(Color(.systemBackground))
+                    .presentationDetents([.large])
+                    .presentationDragIndicator(.visible)
             }
             .navigationTitle("Sessões")
             .toolbar {
                 NavigationLink {
-                    SheetOneView()
+                    SheetOneView(sessionTime: 0)
                 } label: {
                     Label ("Adicionar anotação", systemImage: "plus")
                 }
             }
-
+            
         }
         
         .listRowSpacing(10)

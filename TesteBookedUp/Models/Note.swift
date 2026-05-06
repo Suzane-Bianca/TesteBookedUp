@@ -14,10 +14,12 @@ class Note: Identifiable, Hashable{
     var bookName: String?
     var reactionCat: Reaction
     var descriptionNote: String
+    var duration: Int
     
-    init(bookName: String?, reactionCat: Reaction, descriptionNote: String) {
+    init(bookName: String?, reactionCat: Reaction, descriptionNote: String, duration: Int) {
         self.bookName = bookName
         self.reactionCat = reactionCat
         self.descriptionNote = descriptionNote
+        self.duration = duration
     }
 }

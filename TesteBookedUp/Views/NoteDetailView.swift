@@ -25,6 +25,7 @@ struct NoteDetailView: View {
                 Spacer()
             }
             Text(newNote.descriptionNote)
+                .foregroundColor(.black)
         }
     }
 }

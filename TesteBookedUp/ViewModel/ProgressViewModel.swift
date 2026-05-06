@@ -49,7 +49,6 @@ class ProgressViewModel {
         if(progressWork <= 60){
             return 60
         } else if(progressWork > 60 || progressWork <= 100 ){
-            //            clearProgress(with: progressWork, totalProgress: totalProgress) Nao sei se faço isso
             return 100
         } else if(progressWork > 100 || progressWork <= 150){
             return 150
@@ -67,6 +66,11 @@ class ProgressViewModel {
     func clearProgress(with progressWork: Int, totalProgress: Int) -> Int {
         self.totalProgress = progressWork
         self.progressWork = 0
+        return progressWork
+    }
+    
+    func CalcProgress(with progressWork: Int, totalProgress: Int) -> Int {
+        self.progressWork = totalProgress - progressWork
         return progressWork
     }
     
