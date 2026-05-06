@@ -14,6 +14,7 @@ struct HomeView: View {
     @State private var userGoal: Goal = .sec
     
     @AppStorage("totalProgress") var totalProgress = 0
+//    @AppStorage("progressWork") var progressWork = 0
     
     @State private var isPresented: Bool = false
     var aaa : Goal = .first
@@ -28,8 +29,7 @@ struct HomeView: View {
                 
                 Spacer()
                 VStack {
-                    Text("Você leu \(progressViewModel.updateProgress(with: progressViewModel.progress, totalProgress: totalProgress )) minutos")
-//                    Text("Você leu \(progressViewModel.progress) minutos")
+                    Text("Você leu \(progressViewModel.VisuProgress(with: progressViewModel.progress, totalProgress: totalProgress )) minutos")
                         .font(Font.title.bold())
                         .padding(10)
                         .foregroundColor(Color .black)
@@ -43,12 +43,13 @@ struct HomeView: View {
                             .font(Font.title.bold())
                             .foregroundColor(Color .darkPurple)
                         VStack {
-                            ProgressBar(width: 260, height: 20, percent: CGFloat(progressViewModel.updateProgress(with: progressViewModel.progress, totalProgress: totalProgress )))
+                            ProgressBar(width: 260, height: 20, percent: CGFloat(progressViewModel.VisuProgress(with: progressViewModel.progress, totalProgress: totalProgress )))
                                 .padding(.vertical, 4)
-                            Text("\(progressViewModel.updateProgress(with: progressViewModel.progress, totalProgress: totalProgress )) / \(userGoal.minutes) minutos")
+                            Text("\(progressViewModel.VisuProgress(with: progressViewModel.progress, totalProgress: totalProgress )) / \(progressViewModel.updateProgres(with: progressViewModel.progressWork, totalProgress: totalProgress )) minutos")
                                 .fontWeight(Font.Weight.semibold)
                                 .frame(maxWidth: 260, alignment: .trailing)
                                 .padding(.bottom, 24)
+                                .foregroundColor(Color .black)
                         }
                         .padding(.all, 2)
                         
