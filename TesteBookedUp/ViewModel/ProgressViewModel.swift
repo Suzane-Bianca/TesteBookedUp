@@ -25,6 +25,7 @@ class ProgressViewModel {
     
     func increaseProgress(with minutes: Int) -> Int {
             progress += minutes
+            checkAndAdvanceGoal()
             return progress
     }
     
