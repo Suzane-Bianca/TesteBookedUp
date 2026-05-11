@@ -10,7 +10,11 @@ import SwiftUI
 
 @Observable
 class ProgressViewModel {
-    var progress: Int = 0
+    
+    @ObservationIgnored @AppStorage("progress") var progress:Int = 0
+    @ObservationIgnored @AppStorage("currentGoalIndex") var currentGoalIndex  :Int = 0
+    
+//    var progress: Int = 0
     var totalProgress: Int = 0
     var progressWork: Int = 0
     var Goal: Goal = .first
