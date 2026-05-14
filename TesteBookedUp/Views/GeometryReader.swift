@@ -9,12 +9,14 @@ import SwiftUI
 
 struct GoalView: View {
     
-    @AppStorage("totalProgress") var totalProgress = 0
+//    @AppStorage("totalProgress") var totalProgress = 61
+    
+    @ObservationIgnored @AppStorage("progress") var progress: Int = 0
     
     let goal: Goal
     
     var body: some View {
-        if totalProgress >= goal.unlockProgress {
+        if progress >= goal.unlockProgress {
             goal.image
                 .resizable()
                 .scaledToFit()

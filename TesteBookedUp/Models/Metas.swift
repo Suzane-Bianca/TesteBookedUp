@@ -55,9 +55,9 @@ enum Goal: Int, CaseIterable {
     var calc: CGFloat {
         switch self {
         case .first:
-            return 60
+            return 0
         case .sec:
-            return 100
+            return 60
         case .third:
             return 150
         case .fourth:
