@@ -41,12 +41,12 @@ struct HomeView: View {
                     VStack{
                         Text("Seu progresso atual")
                             .font(Font.title.bold())
-                            .foregroundColor(Color .darkPurple)
+//                            .foregroundColor(Color .darkPurple)
                         VStack {
                             ProgressBar(width: 260, height: 20, percent: CGFloat(progressViewModel.VisuProgress(with: progressViewModel.progress, totalProgress: totalProgress )))
                                 .padding(.vertical, 4)
                             Text("\(progressViewModel.VisuProgress(with: progressViewModel.progress, totalProgress: totalProgress )) / \(progressViewModel.updateProgress(with: progressViewModel.progressWork, totalProgress: totalProgress )) minutos")
-                                .fontWeight(Font.Weight.semibold)
+                                .fontWeight(Font.Weight.medium)
                                 .frame(maxWidth: 260, alignment: .trailing)
                                 .padding(.bottom, 24)
                                 .foregroundColor(Color .black)
