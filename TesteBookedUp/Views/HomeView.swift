@@ -26,6 +26,10 @@ struct HomeView: View {
                 Color(.lightPurple)
                     .ignoresSafeArea()
                 Image("TelaInicial")
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
+                    
                 
                 Spacer()
                 VStack {
@@ -35,8 +39,9 @@ struct HomeView: View {
                         .foregroundColor(Color .black)
                     
                     
-                    LottieView(name: "AnimacaoTelaInicial")
-                        .frame(width: 270, height: 280)
+                        LottieView(name: "AnimacaoTelaInicial")
+                            .frame(width: 270, height: 280)
+                    
                 
                     VStack{
                         Text("Seu progresso atual")
