@@ -181,7 +181,7 @@ struct TimerView: View {
     // PESQUISAR SOBRE SWIFT FORMATTER / FORMAT STYLE
     
     func timerCounter(_ timer: Timer) {
-        counter += 1
+        counter += 300
         let time = secondsToHoursMinutesSeconds(seconds: counter)
         let timeString = makeTimeString(hours: time.0, minutes: time.1, seconds: time.2)
         timeText = timeString
