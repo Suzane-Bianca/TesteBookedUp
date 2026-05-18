@@ -12,12 +12,20 @@ import Combine
 var timer: Timer = Timer()
 
 struct TimerView: View {
+    @AppStorage(AppStorageKeys.totalProgress.rawValue) var totalProgress = 0
+    
+    @Environment(ProgressViewModel.self) private var progressViewModel: ProgressViewModel
+    @Environment(\.dismiss) private var dismiss
+    
     @State private var showingAlert: Bool = false
     
     @State var timeText: String = "00 : 00 : 00"
     @State var counter:Int = 0
     @State var isTimerRunning:Bool = false
     @State private var toSheet: Bool = false
+    @State var timerPontuation: Int = 0
+    @State private var isPresented: Bool = false
+    @State private var dismissButton: Bool = false
 
     var body: some View {
         
@@ -48,7 +56,7 @@ struct TimerView: View {
                     Spacer()
                     Spacer()
                     Spacer()
-
+                    
                     LottieView(name: "Lendo Gato Magico - Meta 1")
                         .frame(width: 225.77, height: 250)
                     
@@ -100,8 +108,11 @@ struct TimerView: View {
                     Spacer()
                     Spacer()
                     Spacer()
+                    
                     Button {
                         showingAlert = true
+                        isTimerRunning = false
+                        timer.invalidate()
                     } label: {
                         Label("Concluir sessão", systemImage: "")
                             .font(Font.title3.bold())
@@ -116,8 +127,15 @@ struct TimerView: View {
                                 }
                                 Button ("Concluir"){
                                     toSheet = true
+                                    let currentProgressInMinutes = secondsToMinutes(
+                                        seconds: counter
+                                    )
+                                    totalProgress += currentProgressInMinutes
                                     if (toSheet) {
                                         isTimerRunning = false
+                                        progressViewModel.increaseProgress(
+                                            with: currentProgressInMinutes
+                                        )
                                         timer.invalidate()
                                     }
                                 }
@@ -126,19 +144,44 @@ struct TimerView: View {
                                 Text("Salvar essa sessão de leitura registrará seu progresso.")
                             }
                             .sheet(isPresented: $toSheet){
-                                SheetOneView()
+                                SheetOneView(sessionTime: secondsToMinutes(seconds: counter))
                                     .background(Color(.systemBackground))
-                                    .presentationDragIndicator(.visible)
+                                    .interactiveDismissDisabled()
                             }
+                        
                     }
+                }
+            }
+        }
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem (placement: .topBarLeading) {
+                Button {
+                    dismissButton = true
+                    isTimerRunning = false
+                    timer.invalidate()
+                } label: {
+                    Label("Sair", systemImage: "chevron.backward")
+                        .alert("Deseja sair da sessão?", isPresented: $dismissButton){
+                            Button("Continuar") {
+                            }
+                            Button ("Sair"){
+                                dismiss()
+                            }
+                            .keyboardShortcut(.defaultAction)
+                        } message: {
+                            Text("Ao sair sua sessão será finalizada sem salvar.")
+                        }
                 }
             }
         }
         .toolbarVisibility(.hidden, for: .tabBar)
     }
     
+    // PESQUISAR SOBRE SWIFT FORMATTER / FORMAT STYLE
+    
     func timerCounter(_ timer: Timer) {
-        counter += 1
+        counter += 300
         let time = secondsToHoursMinutesSeconds(seconds: counter)
         let timeString = makeTimeString(hours: time.0, minutes: time.1, seconds: time.2)
         timeText = timeString
@@ -154,14 +197,16 @@ struct TimerView: View {
         let seconds = seconds.remainderReportingOverflow(dividingBy: 60).partialValue
         return (hours, minutes, seconds)
     }
+    
+    func secondsToMinutes(seconds: Int) -> (Int) {
+        let minutes = (seconds / 60)
+        return minutes
+    }
 }
 
 #Preview {
+    @Previewable @State var progressViewModel = ProgressViewModel()
+    
     TimerView()
+        .environment(progressViewModel)
 }
-
-//force unwrap -> !
-// nil coalescing -> ??
-//optional binding -> if let
-
-

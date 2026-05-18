@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 @Model
-class Book: Identifiable {
+class Book: Identifiable, Hashable {
     var id = UUID()
     var nome: String
     

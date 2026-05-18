@@ -10,7 +10,7 @@ import Lottie
 
 struct ContentView: View {
     @AppStorage("selectedTab") private var selectedTab = 0
-    
+        
     var body: some View {
         TabView (selection: $selectedTab){
             Tab("Sala", systemImage: "house", value: 0){
@@ -18,11 +18,11 @@ struct ContentView: View {
             }
             
             Tab("Biblioteca", systemImage: "books.vertical", value: 0){
-                LibraryView()
+                GeometryReader()
             }
             
             Tab("Diário", systemImage: "book", value: 0){
-                NotesView()
+                SectionTemplatView()
             }
         }
     }

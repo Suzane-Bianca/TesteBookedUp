@@ -9,8 +9,18 @@ import SwiftUI
 import Lottie
 
 struct HomeView: View {
+    @Environment(ProgressViewModel.self) private var progressViewModel: ProgressViewModel
+    
+    @State private var userGoal: Goal = .sec
+    
+    @AppStorage(AppStorageKeys.totalProgress.rawValue) var totalProgress = 0
+//    @AppStorage("progressWork") var progressWork = 0
+    
     @State private var isPresented: Bool = false
+    var aaa : Goal = .first
+    
     var body: some View {
+        
         NavigationStack {
             ZStack{
                 Color(.lightPurple)
@@ -18,17 +28,39 @@ struct HomeView: View {
                 Image("TelaInicial")
                 
                 Spacer()
-                
                 VStack {
+                    Text("Você leu \(progressViewModel.VisuProgress(with: progressViewModel.progress, totalProgress: totalProgress )) minutos")
+                        .font(Font.title.bold())
+                        .padding(10)
+                        .foregroundColor(Color .black)
+                    
+                    
                     LottieView(name: "AnimacaoTelaInicial")
                         .frame(width: 270, height: 280)
-                        
+                
                     VStack{
-                        
                         Text("Seu progresso atual")
-                            .font(Font.title3.bold())
-                            .foregroundColor(Color .darkPurple)
-                        
+                            .font(Font.title.bold())
+//                            .foregroundColor(Color .darkPurple)
+                        VStack {
+                            ProgressBar(
+                                width: 260,
+                                height: 20,
+                                percent: CGFloat(
+                                    progressViewModel.VisuProgress(
+                                        with: progressViewModel.progress,
+                                        totalProgress: totalProgress
+                                    )
+                                )
+                            )
+                            .padding(.vertical, 4)
+                            Text("\(progressViewModel.progress) / \(progressViewModel.updateProgress(with: progressViewModel.progressWork, totalProgress: totalProgress )) minutos")
+                                .fontWeight(Font.Weight.medium)
+                                .frame(maxWidth: 260, alignment: .trailing)
+                                .padding(.bottom, 24)
+                                .foregroundColor(Color .black)
+                        }
+                        .padding(.all, 2)
                         
                         Button{
                             isPresented = true
@@ -43,9 +75,9 @@ struct HomeView: View {
                                 .navigationDestination(isPresented: $isPresented){
                                     TimerView()
                                 }
+
                         }
                     }
-                    
                     .padding(50)
                     .background(.white)
                     .cornerRadius(45)
@@ -56,5 +88,9 @@ struct HomeView: View {
 }
 
 #Preview {
+    @Previewable @State var progressViewModel = ProgressViewModel()
+    
     HomeView()
+        .environment(progressViewModel)
+
 }

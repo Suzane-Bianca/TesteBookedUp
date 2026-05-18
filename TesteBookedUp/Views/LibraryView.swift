@@ -6,11 +6,38 @@
 //
 
 import SwiftUI
+import SwiftData
+
+
+//grid
+
+
+//duas Hstack dentro duma VStack
 
 struct LibraryView: View {
+    var readingNumber = 150
+    
+    @Query private var booksSheet: [Book]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack{
+            Image("Biblioteca")
+                .resizable()
+                .scaledToFill()
+                .edgesIgnoringSafeArea(.all)
+            
+            VStack{
+                HStack{
+                
+                    Text("Library")
+                        .font(.largeTitle)
+                        .bold()
+                    Spacer()}
+            }
+  
+                .padding()      }
     }
+    
 }
 
 #Preview {
