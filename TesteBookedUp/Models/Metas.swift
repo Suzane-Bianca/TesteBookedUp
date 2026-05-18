@@ -102,6 +102,7 @@ enum Goal: Int, CaseIterable {
             return "360"
         }
     }
+    
     var unlockProgress: Int {
         switch self {
         case .first:

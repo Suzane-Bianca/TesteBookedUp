@@ -11,8 +11,8 @@ import SwiftUI
 @Observable
 class ProgressViewModel {
     
-    @ObservationIgnored @AppStorage("progress") var progress: Int = 0
-    @ObservationIgnored @AppStorage("currentGoalIndex") var currentGoalIndex: Int = 0
+    @ObservationIgnored @AppStorage(AppStorageKeys.progress.rawValue) var progress: Int = 0
+    @ObservationIgnored @AppStorage(AppStorageKeys.currentGoalIndex.rawValue) var currentGoalIndex: Int = 0
     
     var currentGoal: Goal {
         Goal.allCases[currentGoalIndex]
@@ -24,12 +24,12 @@ class ProgressViewModel {
     var progressWork: Int = 0
     
     func increaseProgress(with minutes: Int) -> Int {
-            progress += minutes
-            checkAndAdvanceGoal()
-            return progress
+        progress += minutes
+        checkAndAdvanceGoal()
+        return progress
     }
     
-    func checkAndAdvanceGoal(){
+    func checkAndAdvanceGoal() {
         if progress >= currentGoal.rawValue {
             progress = progress - currentGoal.rawValue
             if currentGoalIndex + 1 < Goal.allCases.count {
@@ -38,9 +38,8 @@ class ProgressViewModel {
         }
     }
     
-    func VisuProgress(with minutes: Int, totalProgress: Int)->Int {
+    func VisuProgress(with minutes: Int, totalProgress: Int) -> Int {
         return progress
-        
     }
     
     func updateProgress(with minutes: Int, totalProgress: Int) -> Int{

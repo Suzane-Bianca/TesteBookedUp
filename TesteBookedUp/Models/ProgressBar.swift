@@ -11,8 +11,8 @@ import SwiftData
 struct ProgressBar: View {
         
     @Environment(ProgressViewModel.self) private var progressViewModel: ProgressViewModel
-    @AppStorage("totalProgress") var totalProgress = 0
-    @AppStorage("progressWork") var progressWork = 0
+    @AppStorage(AppStorageKeys.totalProgress.rawValue) var totalProgress = 0
+    @AppStorage(AppStorageKeys.progressWork.rawValue) var progressWork = 0
     @State private var userGoal: Goal = .sec
     
     @State private var speed = 0.5
@@ -42,13 +42,7 @@ struct ProgressBar: View {
     
     }
     
-    func cleanBar() {
-        
-    }
-    
-    func changeNumbers() {
-        
-    }
+   
 }
 //
 //#Preview {

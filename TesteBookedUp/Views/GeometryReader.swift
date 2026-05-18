@@ -9,14 +9,15 @@ import SwiftUI
 
 struct GoalView: View {
     
-//    @AppStorage("totalProgress") var totalProgress = 61
+//    @Environment(ProgressViewModel.self) private var progressViewModel: ProgressViewModel
+    @AppStorage(AppStorageKeys.totalProgress.rawValue) var totalProgress = 0
     
-    @ObservationIgnored @AppStorage("progress") var progress: Int = 0
+//    @ObservationIgnored @AppStorage("progress") var progress: Int = 0
     
     let goal: Goal
     
     var body: some View {
-        if progress >= goal.unlockProgress {
+        if totalProgress >= goal.unlockProgress {
             goal.image
                 .resizable()
                 .scaledToFit()
@@ -42,6 +43,7 @@ struct GeometryReader: View {
                     .overlay(Text("Biblioteca Mágica")
                         .padding(.leading, 5)
                         .padding(.bottom, 32)
+                        .foregroundColor(Color(.black))
                         .font(Font.title2)
                         .fontWeight(Font.Weight.semibold))
                     
