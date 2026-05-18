@@ -9,7 +9,10 @@ import SwiftUI
 
 struct GoalView: View {
     
-    @AppStorage("totalProgress") var totalProgress = 0
+//    @Environment(ProgressViewModel.self) private var progressViewModel: ProgressViewModel
+    @AppStorage(AppStorageKeys.totalProgress.rawValue) var totalProgress = 0
+    
+//    @ObservationIgnored @AppStorage("progress") var progress: Int = 0
     
     let goal: Goal
     
@@ -26,11 +29,6 @@ struct GoalView: View {
        
     }
     
-    
-//    func progress() -> Double {
-//        goal.rawValue
-//    }
-    
 }
 
 struct GeometryReader: View {
@@ -41,9 +39,14 @@ struct GeometryReader: View {
                 Image("TopoDaEstante")
                     .resizable()
                     .scaledToFit()
+                    .padding(.bottom)
                     .overlay(Text("Biblioteca Mágica")
+                        .padding(.leading, 5)
+                        .padding(.bottom, 32)
+                        .foregroundColor(Color(.black))
                         .font(Font.title2)
                         .fontWeight(Font.Weight.semibold))
+                    
 
                 
                 VStack(spacing: 0) {
@@ -59,7 +62,7 @@ struct GeometryReader: View {
                     
                 }
                 .padding(.horizontal, 20)
-//                .padding(.vertical, 50)
+                .padding(.vertical, 10) //50 e estava commitado
                 
                 VStack(spacing: 0) {
                     HStack(alignment: .bottom, spacing: 50) {
@@ -82,6 +85,7 @@ struct GeometryReader: View {
                     .resizable()
                     .scaledToFit()
                     .rotationEffect(Angle(degrees: 180))
+                    .padding(.bottom)
             }
             .padding()
         }
