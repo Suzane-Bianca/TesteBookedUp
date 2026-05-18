@@ -34,7 +34,6 @@ struct GoalView: View {
 struct GeometryReader: View {
     var body: some View {
         ZStack{
-            
             VStack(alignment:.center) {
                 Image("TopoDaEstante")
                     .resizable()
@@ -55,31 +54,31 @@ struct GeometryReader: View {
                         GoalView(goal: .sec)
                         GoalView(goal: .third)
                     }
-                    .padding(.horizontal)
+//                    .padding(.horizontal, 10)
                     Image("Prateleira")
                         .resizable()
                         .scaledToFit()
                     
                 }
-                .padding(.horizontal, 20)
-                .padding(.vertical, 10) //50 e estava commitado
+    
+                .padding(.horizontal) //20
+                .padding(.vertical) //10
                 
                 VStack(spacing: 0) {
                     HStack(alignment: .bottom, spacing: 50) {
                         GoalView(goal: .fourth)
-
                         GoalView(goal: .fifth)
                         GoalView(goal: .sixth)
                     }
-                    .padding(.horizontal)
+                
                     
                     Image("Prateleira")
                         .resizable()
                         .scaledToFit()
                     
                 }
-                .padding(.vertical, 40)
-                .padding(.horizontal, 20)
+                .padding(.vertical) //40
+                .padding(.horizontal)// 20
                 
                 Image("TopoDaEstante")
                     .resizable()
@@ -89,7 +88,8 @@ struct GeometryReader: View {
             }
             .padding()
         }
-        .ignoresSafeArea()
+        .padding(.vertical)
+//        .ignoresSafeArea()
         .background(Image("Fundo"))
     }
 }
