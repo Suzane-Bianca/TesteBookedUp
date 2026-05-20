@@ -11,6 +11,7 @@ import Lottie
 struct CongratulationView: View {
     @State private var isPresented: Bool = false
     @Environment(\.dismiss) var dismiss
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         NavigationView{
@@ -20,11 +21,14 @@ struct CongratulationView: View {
                     .frame(width: 309, height: 323.02)
                 Text("Parabéns!!")
                     .font(Font.title.bold())
+                    .foregroundStyle(colorScheme == .dark ? .white : .black)
                 Text("Sessão concluída com sucesso!")
                     .font(Font.title2)
+                    .fontWeight(Font.Weight.medium)
+                    .foregroundStyle(colorScheme == .dark ? .white : .black)
                 Spacer(minLength: 180)
             }
-            .foregroundColor(.black)
+            .foregroundColor(.gray.opacity(0.5))
         }
         .navigationBarBackButtonHidden(true)
         .toolbar {

@@ -11,6 +11,7 @@ import SwiftData
 struct SheetOneView: View {
     @Environment(\.modelContext) var modelContext
     @Environment(\.dismiss) var dismiss
+    @Environment(\.colorScheme) var colorScheme
     
     @Query(sort: \Book.id, order: .reverse) private var booksSheet: [Book]
     @Query private var notes: [Note]
@@ -64,7 +65,7 @@ struct SheetOneView: View {
                                                 .padding([.leading, .trailing], 3)
                                             Text(reaction.title)
                                                 .padding([.bottom], 9)
-                                                .foregroundColor(.black)
+                                                .foregroundColor(colorScheme == .dark ? .white : .black)
                                                 .font(Font.title2)
                                         }
                                         .overlay(
@@ -141,14 +142,21 @@ struct SheetOneView: View {
                             SheetTwoView()
                         }
                     }
+                    .foregroundStyle(colorScheme == .dark ? .white : .gray)
                     
                     Section ("Conte-me como foi o livro") {
-                        TextField("O livro está sendo...", text: $description, axis: .vertical)
+                        TextField("O livro está sendo...",
+                                  text: $description,
+                                  axis: .vertical)
                             .lineLimit(8...)
                             .multilineTextAlignment(.leading)
                             .textFieldStyle(.roundedBorder)
+                            .border(colorScheme == .dark ? .secondary : .quaternary)
+                            .bold(true)
                     }
                     .headerProminence(.increased)
+//                    .bold(true)
+                    .foregroundStyle(colorScheme == .dark ? .white : .black)
                 }
                 .scrollContentBackground(.hidden)
                 .listRowSpacing(10)

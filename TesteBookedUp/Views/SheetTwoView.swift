@@ -15,6 +15,8 @@ struct SheetTwoView: View {
     @State private var name: String = ""
     var editingBook: Book?
     @Environment(\.dismiss) var dismiss
+    
+    @Environment(\.colorScheme) var colorScheme
 
     
     var body: some View {
@@ -25,7 +27,7 @@ struct SheetTwoView: View {
             Spacer()
             VStack (alignment: .leading){
                 Text("Qual título do livro?")
-                    .foregroundColor(.black)
+                    .foregroundColor(colorScheme == .dark ? .white : .black)
                     .padding([.leading], 20)
                     .bold()
                 TextField("O Mistérioso caso do Gato Mago", text: $name, axis: .vertical)
@@ -35,6 +37,8 @@ struct SheetTwoView: View {
                     .padding(1)
                     .scrollContentBackground(.hidden)
                     .padding([.leading, .trailing], 20)
+                    .bold(true)
+                
             }
             Spacer()
             Spacer()
@@ -43,7 +47,7 @@ struct SheetTwoView: View {
             .toolbar{
                 ToolbarItem(placement: .principal) {
                     Text("Adicionar livro")
-                        .foregroundColor(.black)
+                        .foregroundColor(colorScheme == .dark ? .white : .black)
                 }
                 ToolbarItem(placement: .confirmationAction){
                     Button("Confirmar", systemImage: "checkmark"){
