@@ -11,8 +11,8 @@ import SwiftData
 struct ProgressBar: View {
         
     @Environment(ProgressViewModel.self) private var progressViewModel: ProgressViewModel
-    @AppStorage("totalProgress") var totalProgress = 0
-    @AppStorage("progressWork") var progressWork = 0
+    @AppStorage(AppStorageKeys.totalProgress.rawValue) var totalProgress = 0
+    @AppStorage(AppStorageKeys.progressWork.rawValue) var progressWork = 0
     @State private var userGoal: Goal = .sec
     
     @State private var speed = 0.5
@@ -24,7 +24,7 @@ struct ProgressBar: View {
 
     
     var body: some View {
-        let multipler = width / CGFloat(progressViewModel.updateProgres(with: progressViewModel.progress, totalProgress: progressWork))
+        let multipler = width / CGFloat(progressViewModel.updateProgress(with: progressViewModel.progress, totalProgress: progressWork))
         
         ZStack(alignment: .leading){
             RoundedRectangle(cornerRadius: 20, style: .continuous)
@@ -42,13 +42,7 @@ struct ProgressBar: View {
     
     }
     
-    func cleanBar() {
-        
-    }
-    
-    func changeNumbers() {
-        
-    }
+   
 }
 //
 //#Preview {

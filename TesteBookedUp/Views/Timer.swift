@@ -12,7 +12,7 @@ import Combine
 var timer: Timer = Timer()
 
 struct TimerView: View {
-    @AppStorage("totalProgress") var totalProgress = 0
+    @AppStorage(AppStorageKeys.totalProgress.rawValue) var totalProgress = 0
     
     @Environment(ProgressViewModel.self) private var progressViewModel: ProgressViewModel
     @Environment(\.dismiss) private var dismiss
@@ -112,7 +112,6 @@ struct TimerView: View {
                     Button {
                         showingAlert = true
                         isTimerRunning = false
-                        progressViewModel.increaseProgress(with: secondsToMinutes(seconds: counter))
                         timer.invalidate()
                     } label: {
                         Label("Concluir sessão", systemImage: "")
@@ -128,10 +127,15 @@ struct TimerView: View {
                                 }
                                 Button ("Concluir"){
                                     toSheet = true
-                                    totalProgress += secondsToMinutes(seconds: counter)
+                                    let currentProgressInMinutes = secondsToMinutes(
+                                        seconds: counter
+                                    )
+                                    totalProgress += currentProgressInMinutes
                                     if (toSheet) {
                                         isTimerRunning = false
-                                        progressViewModel.increaseProgress(with: secondsToMinutes(seconds: counter))
+                                        progressViewModel.increaseProgress(
+                                            with: currentProgressInMinutes
+                                        )
                                         timer.invalidate()
                                     }
                                 }

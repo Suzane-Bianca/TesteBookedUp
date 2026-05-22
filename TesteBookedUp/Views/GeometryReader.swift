@@ -9,7 +9,10 @@ import SwiftUI
 
 struct GoalView: View {
     
-    @AppStorage("totalProgress") var totalProgress = 0
+//    @Environment(ProgressViewModel.self) private var progressViewModel: ProgressViewModel
+    @AppStorage(AppStorageKeys.totalProgress.rawValue) var totalProgress = 0
+    
+//    @ObservationIgnored @AppStorage("progress") var progress: Int = 0
     
     let goal: Goal
     
@@ -26,24 +29,23 @@ struct GoalView: View {
        
     }
     
-    
-//    func progress() -> Double {
-//        goal.rawValue
-//    }
-    
 }
 
 struct GeometryReader: View {
     var body: some View {
         ZStack{
-            
             VStack(alignment:.center) {
                 Image("TopoDaEstante")
                     .resizable()
                     .scaledToFit()
+                    .padding(.bottom)
                     .overlay(Text("Biblioteca Mágica")
+                        .padding(.leading, 5)
+                        .padding(.bottom, 32)
+                        .foregroundColor(Color(.black))
                         .font(Font.title2)
                         .fontWeight(Font.Weight.semibold))
+                    
 
                 
                 VStack(spacing: 0) {
@@ -52,40 +54,42 @@ struct GeometryReader: View {
                         GoalView(goal: .sec)
                         GoalView(goal: .third)
                     }
-                    .padding(.horizontal)
+//                    .padding(.horizontal, 10)
                     Image("Prateleira")
                         .resizable()
                         .scaledToFit()
                     
                 }
-                .padding(.horizontal, 20)
-//                .padding(.vertical, 50)
+    
+                .padding(.horizontal) //20
+                .padding(.vertical) //10
                 
                 VStack(spacing: 0) {
                     HStack(alignment: .bottom, spacing: 50) {
                         GoalView(goal: .fourth)
-
                         GoalView(goal: .fifth)
                         GoalView(goal: .sixth)
                     }
-                    .padding(.horizontal)
+                
                     
                     Image("Prateleira")
                         .resizable()
                         .scaledToFit()
                     
                 }
-                .padding(.vertical, 40)
-                .padding(.horizontal, 20)
+                .padding(.vertical) //40
+                .padding(.horizontal)// 20
                 
                 Image("TopoDaEstante")
                     .resizable()
                     .scaledToFit()
                     .rotationEffect(Angle(degrees: 180))
+                    .padding(.bottom)
             }
             .padding()
         }
-        .ignoresSafeArea()
+        .padding(.vertical)
+//        .ignoresSafeArea()
         .background(Image("Fundo"))
     }
 }
