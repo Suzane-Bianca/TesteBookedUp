@@ -8,38 +8,6 @@
 import SwiftUI
 import SwiftData
 
-//Meta 1: 60 min
-//Meta 2: 100 min
-//Meta 3: 150 min
-//Meta 4: 210 min
-//Meta 5: 300 min
-//Meta 6: 360 min
-
-//class  Metas {
-//    var id = UUID()
-//    var value: Int
-//    var image: Image
-//}
-
-
-//
-//#Preview {
-//    Metas()
-//}
-
-//@Model
-//class ProgressInGoal {
-//    
-//    var goal: Goal
-//    var progress: Int = 0
-//    
-//    init(goal: Goal, progress: Int) {
-//        self.goal = goal
-//        self.progress = progress
-//    }
-//    
-//}
-
 enum Goal: Int, CaseIterable {
     
     case first = 60

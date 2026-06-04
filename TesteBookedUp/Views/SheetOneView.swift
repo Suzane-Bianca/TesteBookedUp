@@ -24,6 +24,9 @@ struct SheetOneView: View {
     
     @State var selectedReaction: Reaction?
     @State var selectedBook: Book?
+    @State var unselectedReaction: Reaction?
+    
+    @State var isNewBook: Bool = false
 
     let defaultReaction: Reaction = .happy
     

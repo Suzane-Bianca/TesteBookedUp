@@ -99,8 +99,8 @@ struct CardTemplatView: View {
                     isEditing = true
                 } label: {
                     Label ("Concluir", systemImage: "square.and.pencil")
-                        .navigationDestination(isPresented: $isEditing){
-                            SheetOneView(sessionTime: 0)
+                        .navigationDestination(isPresented: $isEditing) {
+                            SectionEditView(isEditing: notes)
                         }
                 }
             }
