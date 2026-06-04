@@ -13,6 +13,7 @@ struct SectionTemplatView: View {
     @Query(sort:\Note.id, order: .reverse) private var notes: [Note]
     
     @State private var selected: Note?
+    @State private var isSheetCreat: Bool = false
     
     var body: some View {
         NavigationStack{
@@ -32,19 +33,22 @@ struct SectionTemplatView: View {
             }
             .sheet(item: $selected){ nota in
                 CardTemplatView(notes: nota)
+                    .foregroundColor(Color(.black))
                     .background(Color(.systemBackground))
                     .presentationDetents([.large])
                     .presentationDragIndicator(.visible)
             }
             .navigationTitle("Sessões")
             .toolbar {
-                NavigationLink {
-                    SheetOneView(sessionTime: 0)
+                Button {
+                    isSheetCreat = true
                 } label: {
                     Label ("Adicionar anotação", systemImage: "plus")
                 }
+                .sheet(isPresented: $isSheetCreat) {
+                    CreateSection(sessionTime: 0)
+                }
             }
-            
         }
         
         .listRowSpacing(10)

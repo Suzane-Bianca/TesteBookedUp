@@ -1,14 +1,14 @@
 //
-//  SectionDetailView.swift
+//  CreateSection.swift
 //  TesteBookedUp
 //
-//  Created by User on 29/04/26.
+//  Created by Bianca Moura on 03/06/26.
 //
 
 import SwiftUI
 import SwiftData
 
-struct SectionEditView: View {
+struct CreateSection: View {
     @Environment(\.modelContext) var modelContext
     @Environment(\.dismiss) var dismiss
     
@@ -18,7 +18,6 @@ struct SectionEditView: View {
     @State private var description: String = ""
     @State private var editingBook: Book? = nil
     @State private var isPresented: Bool = false
-    @State private var isCongratulations: Bool = false
     
     @State private var saveNotes: Note? = nil
     
@@ -27,10 +26,10 @@ struct SectionEditView: View {
     @State var unselectedReaction: Reaction?
     
     @State var isNewBook: Bool = false
-    
-    var isEditing: Note?
 
     let defaultReaction: Reaction = .happy
+    
+    let sessionTime: Int
     
     var body: some View {
         NavigationStack{
@@ -42,7 +41,7 @@ struct SectionEditView: View {
                                 Button {
                                     selectedReaction = reaction
                                 } label: {
-                                    if selectedReaction == reaction{
+                                    if selectedReaction == reaction {
                                         ZStack {
                                             VStack {
                                                 Image(reaction.image)
@@ -92,7 +91,6 @@ struct SectionEditView: View {
                                         Image(systemName: "checkmark.circle.fill")
                                             .font(Font.title2)
                                             .padding([.trailing], 8)
-                                            .foregroundStyle(Color (.purplePurple))
                                         BooksDetailView(books: book)
                                             .foregroundStyle(.black)
                                     }
@@ -101,7 +99,6 @@ struct SectionEditView: View {
                                         Image(systemName: "circle")
                                             .font(Font.title2)
                                             .padding([.trailing], 8)
-                                            .foregroundStyle(Color (.purplePurple))
                                         BooksDetailView(books: book)
                                             .foregroundStyle(.black)
                                     }
@@ -159,41 +156,23 @@ struct SectionEditView: View {
                 .listRowSpacing(10)
                 .navigationBarTitle("Anotações", displayMode: .inline)
             }
-            
-            
             .toolbar {
                 ToolbarItem(placement: .confirmationAction){
                     Button {
-                        if isEditing != nil {
-                            isEditing?.bookName = selectedBook?.nome
-                            isEditing?.descriptionNote = description
-                            isEditing?.reactionCat = selectedReaction!
-                            dismiss()
-                        }
+                        let newNote = Note(bookName: selectedBook?.nome, reactionCat: selectedReaction ?? defaultReaction, descriptionNote: description, duration: sessionTime)
+                        modelContext.insert(newNote)
+                        dismiss()
                     } label: {
                         Label ("Concluir", systemImage: "checkmark")
                     }
                     .disabled((selectedBook == nil))
                 }
             }
-            .onAppear {
-                if let isEditing1 = isEditing {
-                    if let selectedBookName = isEditing1.bookName {
-                        selectedBook = booksSheet.first(where: { $0.nome == selectedBookName })
-                    }
-                    description = isEditing1.descriptionNote
-                    selectedReaction = isEditing1.reactionCat
-                }
-            }
-            
             .navigationDestination(item: $editingBook) { book in
                 SheetTwoView(editingBook: book)
             }
             
         }
     }
-}
-
-#Preview {
-    SectionEditView(isEditing: nil)
+    
 }

@@ -41,7 +41,7 @@ struct HomeView: View {
                     VStack{
                         Text("Seu progresso atual")
                             .font(Font.title.bold())
-//                            .foregroundColor(Color .darkPurple)
+                            .foregroundColor(Color .black)
                         VStack {
                             ProgressBar(
                                 width: 260,
