@@ -17,10 +17,14 @@ struct NoteDetailView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 60, height: 62.72)
-                if let bookName = newNote.bookName {
-                    Text(bookName)
-                        .bold()
-                        .foregroundColor(Color.darkPurple)
+                VStack {
+                    if let bookName = newNote.bookName {
+                        Text(bookName)
+                            .bold()
+                            .foregroundColor(Color.darkPurple)
+                    }
+                    Text("\(newNote.duration) min")
+                        .foregroundColor(.black)
                 }
                 Spacer()
             }

@@ -19,7 +19,7 @@ class ProgressViewModel {
     }
     
     
-////    var progress: Int = 0
+//    var progress: Int = 0
     var totalProgress: Int = 0
     var progressWork: Int = 0
     

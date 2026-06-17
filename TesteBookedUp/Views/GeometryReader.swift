@@ -8,12 +8,8 @@
 import SwiftUI
 
 struct GoalView: View {
-    
-//    @Environment(ProgressViewModel.self) private var progressViewModel: ProgressViewModel
     @AppStorage(AppStorageKeys.totalProgress.rawValue) var totalProgress = 0
-    
-//    @ObservationIgnored @AppStorage("progress") var progress: Int = 0
-    
+
     let goal: Goal
     
     var body: some View {
