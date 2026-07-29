@@ -11,7 +11,7 @@ import SwiftData
 @Model
 class Book: Identifiable, Hashable {
     var id = UUID()
-    var nome: String
+    var nome: String = ""
     
     init (nome: String){
         self.nome = nome
