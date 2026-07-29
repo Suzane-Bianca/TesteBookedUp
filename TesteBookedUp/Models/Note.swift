@@ -12,9 +12,9 @@ import SwiftData
 class Note: Identifiable, Hashable{
     var id = UUID()
     var bookName: String?
-    var reactionCat: Reaction
-    var descriptionNote: String
-    var duration: Int
+    var reactionCat: Reaction = Reaction.sad
+    var descriptionNote: String = ""
+    var duration: Int = 0
     
     init(bookName: String?, reactionCat: Reaction, descriptionNote: String, duration: Int) {
         self.bookName = bookName
