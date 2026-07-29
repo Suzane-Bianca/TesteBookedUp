@@ -29,7 +29,7 @@ struct TimerView: View {
 
     var body: some View {
         
-        NavigationStack {
+        VStack {
             ZStack{
                 Color(.lightPurple)
                     .ignoresSafeArea()
