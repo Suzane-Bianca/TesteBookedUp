@@ -26,6 +26,8 @@ struct TimerView: View {
     @State var timerPontuation: Int = 0
     @State private var isPresented: Bool = false
     @State private var dismissButton: Bool = false
+    @State private var startedTimer: Bool = false
+    
 
     var body: some View {
         
@@ -88,6 +90,7 @@ struct TimerView: View {
                         Button{
                             if (isTimerRunning == false) {
                                 isTimerRunning = true
+                                startedTimer = true
                                 timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: (timerCounter))
                             }
                         } label: {
@@ -120,7 +123,7 @@ struct TimerView: View {
                             .font(Font.title2)
                             .padding([.bottom, .top], 14)
                             .padding([.leading, .trailing], 70)
-                            .background(Color .purplePurple)
+                            .background(startedTimer ? Color .purplePurple : Color.gray)
                             .cornerRadius(45)
                             .alert("Finalizar sessão?", isPresented: $showingAlert){
                                 Button("Cancelar") {
@@ -150,6 +153,7 @@ struct TimerView: View {
                             }
                         
                     }
+                    .disabled(!startedTimer)
                 }
             }
         }
