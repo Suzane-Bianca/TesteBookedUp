@@ -74,17 +74,17 @@ enum Goal: Int, CaseIterable {
     var unlockProgress: Int {
         switch self {
         case .first:
-            0
-        case .sec:
             60
-        case .third:
+        case .sec:
             160
-        case .fourth:
+        case .third:
             310
-        case .fifth:
+        case .fourth:
             520
-        case .sixth:
+        case .fifth:
             820
+        case .sixth:
+            1180
         }
     }
     

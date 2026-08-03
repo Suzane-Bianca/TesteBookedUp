@@ -58,6 +58,7 @@ struct SectionTemplatView: View {
         }
         .background(Color.red)
     }
+    
 }
 
 #Preview {

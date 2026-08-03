@@ -7,24 +7,81 @@
 
 import SwiftUI
 
+enum GoalStatus {
+    case completed
+    case current(progress: Int, target: Int)
+    case locked
+}
+
+extension Goal{
+    static func previous(before goal: Goal) -> Goal? {
+        guard let index = Goal.allCases.firstIndex(of: goal), index > 0 else {
+            return nil
+        }
+        return Goal.allCases[index - 1]
+    }
+    
+    func status(totalProgress: Int) -> GoalStatus {
+        let previousThreshold = Goal.previous(before: self)?.unlockProgress ?? 0
+        if totalProgress >= self.unlockProgress {
+            return .completed
+        } else if totalProgress >= previousThreshold {
+            return .current(progress: totalProgress - previousThreshold, target: self.unlockProgress - previousThreshold)
+        } else {
+            return .locked
+        }
+    }
+}
+
 struct GoalView: View {
     @AppStorage(AppStorageKeys.totalProgress.rawValue) var totalProgress = 0
 
     let goal: Goal
+
     
     var body: some View {
-        if totalProgress >= goal.unlockProgress {
-            goal.image
-                .resizable()
-                .scaledToFit()
-        } else {
-            Image("Block")
-                .resizable()
-                .scaledToFit()
+        VStack(spacing: 0) {
+            if totalProgress >= goal.unlockProgress {
+                goal.image
+                    .resizable()
+                    .scaledToFit()
+            } else {
+                Image("Block")
+                    .resizable()
+                    .scaledToFit()
+            }
         }
-       
     }
+}
+
+struct ShelfStatusBar: View {
+    @AppStorage(AppStorageKeys.totalProgress.rawValue) var totalProgress = 0
     
+    let goals: [Goal]
+    
+    var body: some View {
+        HStack(spacing: 0) {
+            ForEach(goals, id: \.self) { goal in
+                Group {
+                    switch goal.status(totalProgress: totalProgress) {
+                    case .completed:
+                        Text("Concluído")
+                    case .current(progress: let progress, target: let target):
+                        Text("\(progress)/\(target)")
+                    case .locked:
+                        Text("")
+                    }
+                }
+                .font(.caption)
+                .fontWeight(.semibold)
+                .foregroundColor(.darkPurple)
+                .frame(maxWidth: .infinity)
+            }
+        }
+        .padding(.vertical)
+        .background(.prateleira)
+        .cornerRadius(8)
+    }
 }
 
 struct GeometryReader: View {
@@ -50,10 +107,11 @@ struct GeometryReader: View {
                         GoalView(goal: .sec)
                         GoalView(goal: .third)
                     }
-//                    .padding(.horizontal, 10)
-                    Image("Prateleira")
-                        .resizable()
-                        .scaledToFit()
+                    ShelfStatusBar(goals: [.first, .sec, .third])
+//                        .padding(.top)
+//                    Image("Prateleira")
+//                        .resizable()
+//                        .scaledToFit()
                     
                 }
     
@@ -67,10 +125,11 @@ struct GeometryReader: View {
                         GoalView(goal: .sixth)
                     }
                 
-                    
-                    Image("Prateleira")
-                        .resizable()
-                        .scaledToFit()
+                    ShelfStatusBar(goals: [.fourth, .fifth, .sixth])
+//                        .padding(.top)
+//                    Image("Prateleira")
+//                        .resizable()
+//                        .scaledToFit()
                     
                 }
                 .padding(.vertical) //40
