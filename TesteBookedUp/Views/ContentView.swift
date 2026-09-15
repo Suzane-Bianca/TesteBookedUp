@@ -12,7 +12,7 @@ struct ContentView: View {
     @AppStorage("selectedTab") private var selectedTab = 0
     
     var body: some View {
-        NavigationStack{
+//        NavigationStack{
             TabView (selection: $selectedTab){
                 Tab("Sala", systemImage: "house", value: 0){
                     HomeView()
@@ -26,7 +26,7 @@ struct ContentView: View {
                     SectionTemplatView()
                 }
             }
-        }
+//        }
     }
 }
 

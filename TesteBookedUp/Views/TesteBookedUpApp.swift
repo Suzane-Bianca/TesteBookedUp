@@ -17,6 +17,7 @@ struct TesteBookedUpApp: App {
         WindowGroup {
             ContentView()
                 .environment(progressViewModel)
+                .preferredColorScheme(.light)
         }
         .modelContainer(for: [Book.self, Note.self])
     }

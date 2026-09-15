@@ -20,67 +20,68 @@ struct HomeView: View {
     var aaa : Goal = .first
     
     var body: some View {
-        
-        VStack {
-            ZStack{
-                Color(.lightPurple)
-                    .ignoresSafeArea()
-                Image("TelaInicial")
-                
-                Spacer()
-                VStack {
-                    Text("Você leu \(progressViewModel.VisuProgress(with: progressViewModel.progress, totalProgress: totalProgress )) minutos")
-                        .font(Font.title.bold())
-                        .padding(10)
-                        .foregroundColor(Color .black)
+        NavigationStack {
+            VStack {
+                ZStack{
+                    Color(.lightPurple)
+                        .ignoresSafeArea()
+                    Image("TelaInicial")
                     
-                    
-                    LottieView(name: "AnimacaoTelaInicial")
-                        .frame(width: 270, height: 280)
-                
-                    VStack{
-                        Text("Seu progresso atual")
+                    Spacer()
+                    VStack {
+                        Text("Você leu \(progressViewModel.VisuProgress(with: progressViewModel.progress, totalProgress: totalProgress )) minutos")
                             .font(Font.title.bold())
+                            .padding(10)
                             .foregroundColor(Color .black)
-                        VStack {
-                            ProgressBar(
-                                width: 260,
-                                height: 20,
-                                percent: CGFloat(
-                                    progressViewModel.VisuProgress(
-                                        with: progressViewModel.progress,
-                                        totalProgress: totalProgress
+                        
+                        
+                        LottieView(name: "AnimacaoTelaInicial")
+                            .frame(width: 270, height: 280)
+                        
+                        VStack{
+                            Text("Seu progresso atual")
+                                .font(Font.title.bold())
+                                .foregroundColor(Color .black)
+                            VStack {
+                                ProgressBar(
+                                    width: 260,
+                                    height: 20,
+                                    percent: CGFloat(
+                                        progressViewModel.VisuProgress(
+                                            with: progressViewModel.progress,
+                                            totalProgress: totalProgress
+                                        )
                                     )
                                 )
-                            )
-                            .padding(.vertical, 4)
-                            Text("\(progressViewModel.progress) / \(progressViewModel.updateProgress(with: progressViewModel.progressWork, totalProgress: totalProgress )) minutos")
-                                .fontWeight(Font.Weight.medium)
-                                .frame(maxWidth: 260, alignment: .trailing)
-                                .padding(.bottom, 24)
-                                .foregroundColor(Color .black)
+                                .padding(.vertical, 4)
+                                Text("\(progressViewModel.progress) / \(progressViewModel.updateProgress(with: progressViewModel.progressWork, totalProgress: totalProgress )) minutos")
+                                    .fontWeight(Font.Weight.medium)
+                                    .frame(maxWidth: 260, alignment: .trailing)
+                                    .padding(.bottom, 24)
+                                    .foregroundColor(Color .black)
+                            }
+                            .padding(.all, 2)
+                            
+                            Button{
+                                isPresented = true
+                            } label: {
+                                Label("Iniciar sessão de leitura", systemImage: "book.fill")
+                                    .bold()
+                                    .foregroundColor(.white)
+                                    .padding([.bottom, .top], 14)
+                                    .padding([.leading, .trailing], 20)
+                                    .background(Color .purplePurple)
+                                    .cornerRadius(45)
+                                    .navigationDestination(isPresented: $isPresented){
+                                        TimerView()
+                                    }
+                                
+                            }
                         }
-                        .padding(.all, 2)
-                        
-                        Button{
-                            isPresented = true
-                        } label: {
-                            Label("Iniciar sessão de leitura", systemImage: "book.fill")
-                                .bold()
-                                .foregroundColor(.white)
-                                .padding([.bottom, .top], 14)
-                                .padding([.leading, .trailing], 20)
-                                .background(Color .purplePurple)
-                                .cornerRadius(45)
-                                .navigationDestination(isPresented: $isPresented){
-                                    TimerView()
-                                }
-
-                        }
+                        .padding(50)
+                        .background(.white)
+                        .cornerRadius(45)
                     }
-                    .padding(50)
-                    .background(.white)
-                    .cornerRadius(45)
                 }
             }
         }

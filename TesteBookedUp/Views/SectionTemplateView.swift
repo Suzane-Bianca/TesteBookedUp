@@ -50,12 +50,7 @@ struct SectionTemplatView: View {
                 }
             }
         }
-        
         .listRowSpacing(10)
-        .onAppear {
-            print(notes)
-            
-        }
         .background(Color.red)
     }
     
